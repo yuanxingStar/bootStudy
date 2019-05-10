@@ -1,0 +1,69 @@
+spring:
+  datasource:
+    name: test
+    #rewriteBatchedStatements=true 批量插入时只会发送一次插入命令
+    #useUnicode=true characterEncoding=utf8
+    #1. 存数据时： 数据库在存放项目数据的时候会先用UTF-8格式将数据解码成字节码，然后再将解码后的字节码重新使用GBK编码存放到数据库中。
+    #2. 取数据时：  在从数据库中取数据的时候，数据库会先将数据库中的数据按GBK格式解码成字节码，然后再将解码后的字节码重新按UTF-8格式编码数据，最后再将数据返回给客户端。
+    #autoReconnect=true 超时重连 异常中断重连
+    #maxReconnects=10 重试连接次数
+    #initialTimeout=60 两次重连的单位间隔60（秒）
+    #failOverReadOnly=false  自动重连后链接设置为只读
+    #zeroDateTimeBehavior=convertToNull 传入日期为0时转化为null
+    #allowMultiQueries=true 允许批量更新
+    #useSSL=true Could not create connection to database server. Attempted reconnect 3 times. Giving up
+    #serverTimezone 指定时区 东八区
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://192.168.1.249:30301/shengc?rewriteBatchedStatements=true&useUnicode=true&characterEncoding=utf8&autoReconnect=true&zeroDateTimeBehavior=convertToNull&allowMultiQueries=true&useSSL=false
+    username: root
+    password: xjxabcxc
+    #driver-class-name: com.mysql.cj.jdbc.Driver
+    #url: jdbc:mysql://localhost:3306/bookshop?useUnicode=true&useSSL=false&characterEncoding=UTF-8&serverTimezone=GMT%2B8
+    #username: root
+    #password: shen714921
+    type: com.alibaba.druid.pool.DruidDataSource
+    druid:
+      min-idle: 5  #初始化连接
+      initial-size: 5 #最小活跃
+      max-active: 20 #最大活跃
+      max-wait: 1000 #等待超时
+      minEvictableIdleTimeMillis: 300000
+      #配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒
+      time-between-eviction-runs-millis: 6000
+      #validationQuery: SELECT 1 FROM DUAL  #oracle
+      validationQuery: SELECT 'x'
+      #建议配置为true，不影响性能，并且保证安全性。申请连接的时候检测，
+      #如果空闲时间大于timeBetweenEvictionRunsMillis，执行validationQuery检测连接是否有效
+      testWhileIdle: true
+      #申请连接时检测连接是否有效
+      testOnBorrow: false
+      #归还连接时检测连接是否有效
+      testOnReturn: false
+      poolPreparedStatements: true
+      # 打开PSCache，并且指定每个连接上PSCache的大小
+      maxPoolPreparedStatementPerConnectionSize: 20
+      # 配置监控统计拦截的filters，去掉后监控界面sql无法统计，'wall'用于防火墙，此处是filter修改的地方
+      filters: stat,wall,logback
+      filter:
+        #配置StatFilter
+        stat:
+          connection-stack-trace-enable: true
+          db-type: mysql
+          log-slow-sql: true
+          slow-sql-millis: 5000
+          enabled: true
+          merge-sql: true
+        #配置WallFilter
+        wall:
+          enabled: true
+          db-type: mysql
+          config:
+            delete-allow: false
+            drop-table-allow: false
+        commons-log:
+          enabled: true
+          connection-logger-name: logback
+      # 通过connectProperties属性来打开mergeSql功能；慢SQL记录
+      connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
+      # 合并多个DruidDataSource的监控数据
+      useGlobalDataSourceStat: true
