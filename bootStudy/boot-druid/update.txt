@@ -1,0 +1,42 @@
+druid:
+    1.@Conditional(TestCondition.class)
+      这句代码可以标注在类上面，表示该类下面的所有@Bean都会启用配置，也可以标注在方法上面，只是对该方法启用配置。
+      根据条件，决定类是否加载到Spring Ioc容器中,
+      spring框架还提供了很多@Condition给我们用
+
+      @ConditionalOnBean（仅仅在当前上下文中存在某个对象时，才会实例化一个Bean）
+      @ConditionalOnClass（某个class位于类路径上，才会实例化一个Bean）该注解的参数对应的类必须存在，否则不解析该注解修饰的配置类
+                          (​如果此class不存在)
+      @ConditionalOnExpression（当表达式为true的时候，才会实例化一个Bean）
+      @ConditionalOnMissingBean（仅仅在当前上下文中不存在某个对象时，才会实例化一个Bean）
+                                (只有对应的ban在系统中都没有被创建，它修饰的初始化代码块才会执行，用户自己手动创建的bean优先)
+      @ConditionalOnMissingClass（某个class类路径上不存在的时候，才会实例化一个Bean）
+      该注解表示，如果存在它修饰的类的bean，则不需要再创建这个bean；可以给该注解传入参数例如@ConditionOnMissingBean(name = "example")，
+      这个表示如果name为“example”的bean存在，这该注解修饰的代码块不执行。
+      @ConditionalOnNotWebApplication（不是web应用）
+
+    2.@ConditionalOnProperty，这个注解能够控制某个configuration是否生效。具体操作是通过其两个属性name以及havingValue来实现的，
+    其中name用来从application.properties中读取某个属性值，如果该值为空，则返回false;如果值不为空，则将该值与havingValue指定的值进行比较，
+    如果一样则返回true;否则返回false。如果返回值为false，则该configuration不生效；为true则生效
+    @Retention(RetentionPolicy.RUNTIME)
+    @Target({ ElementType.TYPE, ElementType.METHOD })
+    @Documented
+    @Conditional(OnPropertyCondition.class)
+    public @interface ConditionalOnProperty {
+        String[] value() default {}; //数组，获取对应property名称的值，与name不可同时使用
+        String prefix() default "";//property名称的前缀，可有可无
+        String[] name() default {};//数组，property完整名称或部分名称（可与prefix组合使用，组成完整的property名称），与value不可同时使用
+        String havingValue() default "";//可与name组合使用，比较获取到的属性值与havingValue给定的值是否相同，相同才加载配置
+        boolean matchIfMissing() default false;//缺少该property时是否可以加载。如果为true，没有该property也会正常加载；反之报错
+        boolean relaxedNames() default true;//是否可以松散匹配，
+    }
+    }
+
+    3.@ConfigurationProperties将配置文件application.properties中配置的每一个属性值映射到当前类的属性中；
+      @ConfigurationProperties：告诉springboot将本类中所有属性和配置文件中相关的配置进行绑定；
+      prefix="spring.datasource"：指出将配置文件中spring.datasource下的所有属性进行一一映射；
+      注意：只有当前这个类是容器中的组件时，才可以用容器提供的@ConfigurationProperties功能；
+
+    4. com.alibaba.druid.filter.FilterManager   : load filter error, filter not found : logback
+    druid监控需要配置日志功能
+
