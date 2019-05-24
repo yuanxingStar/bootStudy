@@ -12,6 +12,9 @@
     <modules>
         <module>boot-common</module>
         <module>boot-first</module>
+        <module>boot-h2</module>
+        <module>boot-druid</module>
+        <module>boot-mvc</module>
     </modules>
 
 

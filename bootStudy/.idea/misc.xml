@@ -9,10 +9,12 @@
         <option value="$PROJECT_DIR$/boot-common/pom.xml" />
         <option value="$PROJECT_DIR$/boot-h2/pom.xml" />
         <option value="$PROJECT_DIR$/boot-druid/pom.xml" />
+        <option value="$PROJECT_DIR$/boot-mvc/pom.xml" />
+        <option value="$PROJECT_DIR$/boot-mybatis/pom.xml" />
       </list>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_9" project-jdk-name="9" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" default="false" project-jdk-name="1.8" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/out" />
   </component>
 </project>
