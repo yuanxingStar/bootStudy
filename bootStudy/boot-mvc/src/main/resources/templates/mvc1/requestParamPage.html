@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h1>测试 @pathVariable</h1>
+    <hr>
+    <br>
+    <h3>GET 请求 -全部参数传递</h3>
+    <a href="/bootmvc/requestParamController/get?id=1&age=10&name=yuan1">-GET-all</a>
+    <hr>
+    <br>
+    <h3>GET 请求 -部分参数传递 -age未传递(非必须 显示默认值0)</h3>
+    <a href="/bootmvc/requestParamController/get?id=2&name=yuan2">-GET-all</a>
+    <hr>
+    <br>
+    <h3>GET 请求 -全部参数传递 -name未传递(必须 会报错)</h3>
+    <h3>Required String parameter 'name' is not present</h3>
+    <a href="/bootmvc/requestParamController/get?id=3&age=10">-GET-all</a>
+</body>
+</html>

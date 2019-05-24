@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+    <h1>测试 @pathVariable</h1>
+    <hr>
+    <br>
+    <h3>GET 请求</h3>
+    <a href="/bootmvc/pathVariableController/get/1">-GET-</a>
+    <hr>
+    <br>
+    <h3>POST 请求</h3>
+    <form action="/bootmvc/pathVariableController/post/2" method="post">
+        <input type="submit" value="-POST-"/>
+    </form>
+    <hr>
+    <br>
+    <h3>DELETE 请求</h3>
+    <form action="/bootmvc/pathVariableController/delete/3" method="post">
+        <input type="submit" value="-DELETE-"/>
+        <input type="hidden" name="_method" value="DELETE"/>
+    </form>
+    <hr>
+    <br>
+    <h3>PUT 请求</h3>
+    <form action="/bootmvc/pathVariableController/put/4" method="post">
+        <input type="submit" value="-PUT-"/>
+        <input type="hidden" name="_method" value="PUT"/>
+    </form>
+    <hr>
+    <br>
+    <h3>GET 请求 多参数</h3>
+    <a href="/bootmvc/pathVariableController/gets/1/原原">-GET-parms</a>
+</body>
+</html>
