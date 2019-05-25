@@ -9,13 +9,54 @@
     <h1>测试 @requestBody</h1>
     <hr>
     <br>
-    <h3>POST 请求 </h3>
-    <form action="/bootmvc/" method="post">
-        <input type="text" name="username" />
-        <input type="password" name="password" />
-        <input type="number" name="age" />
+    <h3>POST 请求1 (!!!)</h3>
+    <form action="/bootmvc/requestBody/post1" method="post">
+        用户名:<input type="text" name="username" /><br>
+        密码:<input type="password" name="password" /><br>
+        年龄:<input type="number" name="age" /><br>
+        住址:<input type="text" name="address" /><br>
+        邮件:<input type="text" name="email" /><br>
         <input type="submit" value="-DELETE-"/>
-        <input type="hidden" name="_method" value="DELETE"/>
     </form>
+    <h1>测试 @requestBody</h1>
+    <hr>
+    <br>
+    <h3>POST 请求2 (!!!)</h3>
+    <form action="/bootmvc/requestBody/post2" method="post">
+        用户名:<input type="text" name="username" /><br>
+        密码:<input type="password" name="password" /><br>
+        年龄:<input type="number" name="age" /><br>
+        住址:<input type="text" name="address" /><br>
+        邮件:<input type="text" name="email" /><br>
+        <input type="submit" value="-PUT-"/><br>
+        <input type="hidden" name="_method" value="put"/>
+    </form>
+    <h1>测试 接收POST请求参数 实体类封装</h1>
+    <hr>
+    <br>
+    <h3>POST 请求3 </h3>
+    <form action="/bootmvc/requestBody/post3" method="post">
+        用户名:<input type="text" name="username" /><br>
+        密码:<input type="password" name="password" /><br>
+        年龄:<input type="number" name="age" /><br>
+        住址:<input type="text" name="address" /><br>
+        邮件:<input type="text" name="email" /><br>
+        <input type="submit" value="-DELETE-"/><br>
+        <input type="hidden" name="_method" value="delete"/>
+    </form>
+    <h1>测试 接收POST请求参数 Map封装(!!!)</h1>
+    <hr>
+    <br>
+    <h3>POST 请求4 </h3>
+    <form action="/bootmvc/requestBody/post4" method="post">
+        用户名:<input type="text" name="username" /><br>
+        密码:<input type="password" name="password" /><br>
+        年龄:<input type="number" name="age" /><br>
+        住址:<input type="text" name="address" /><br>
+        邮件:<input type="text" name="email" /><br>
+        <input type="submit" value="-PUT-"/><br>
+        <input type="hidden" name="_method" value="put"/>
+    </form>
+
 </body>
 </html>

@@ -1,8 +1,12 @@
 package org.yuanxing.bootmvc.day1.controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.yuanxing.bootmvc.bean.User;
+
+import java.util.Map;
 
 /**
  * @author shkstart
@@ -49,8 +53,34 @@ public class RequestBodyController {
 
     @ResponseBody
     @RequestMapping("/post1")
-    public String post1() {
+    public Map<String,Object> post1(@RequestBody Map<String,Object> map ) {
+        return map;
+    }
 
-        return "";
+    @ResponseBody
+    @RequestMapping("/post2")
+    public User post2(@RequestBody User user ) {
+        return user;
+    }
+
+    @ResponseBody
+    @RequestMapping("/post3")
+    public User post3(User user ) {
+        return user;
+    }
+
+
+    /**
+     *
+     * @param map
+     * @return
+     * @see -无法获取数据
+     */
+    @ResponseBody
+    @RequestMapping("/post4")
+    public Map<String,Object> post4(Map<String,Object> map ) {
+
+        System.out.println("Map" + map);
+        return map;
     }
 }

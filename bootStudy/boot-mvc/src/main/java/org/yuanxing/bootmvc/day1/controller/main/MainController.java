@@ -23,18 +23,21 @@ public class MainController {
     }
 
     @RequestMapping("/requestHeaderPage")
-    public String RequestHeaderPage() {
+    public String requestHeaderPage() {
         return "/mvc1/requestHeaderPage";
     }
 
     @RequestMapping("/requestParamPage")
-    public String RequestParamPage() {
+    public String requestParamPage() {
         return "/mvc1/requestParamPage";
     }
 
     @RequestMapping("/requestBodyPage")
-    public String RequestBodyPage() {
+    public String requestBodyPage() {
         return "mvc1/requestBodyPage";
     }
+
+    @RequestMapping("/cookieValuePage")
+    public String cookieValuePage() { return "mvc1/cookieValuePage"; }
 
 }
