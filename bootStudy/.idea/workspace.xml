@@ -1,14 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="fc86d3dd-e382-4ac0-a0e2-09a8722bb68d" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/boot-mvc/src/main/java/org/yuanxing/bootmvc/day1/controller/RequestBodyController.java" beforeDir="false" afterPath="$PROJECT_DIR$/boot-mvc/src/main/java/org/yuanxing/bootmvc/day1/controller/RequestBodyController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/boot-mvc/src/main/java/org/yuanxing/bootmvc/day1/controller/RequestHeaderController.java" beforeDir="false" afterPath="$PROJECT_DIR$/boot-mvc/src/main/java/org/yuanxing/bootmvc/day1/controller/RequestHeaderController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/boot-mvc/src/main/java/org/yuanxing/bootmvc/day1/controller/main/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/boot-mvc/src/main/java/org/yuanxing/bootmvc/day1/controller/main/MainController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/boot-mvc/src/main/resources/templates/mainPage.html" beforeDir="false" afterPath="$PROJECT_DIR$/boot-mvc/src/main/resources/templates/mainPage.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/boot-mvc/src/main/resources/templates/mvc1/requestBodyPage.html" beforeDir="false" afterPath="$PROJECT_DIR$/boot-mvc/src/main/resources/templates/mvc1/requestBodyPage.html" afterDir="false" />
-    </list>
+    <list default="true" id="fc86d3dd-e382-4ac0-a0e2-09a8722bb68d" name="Default Changelist" comment="" />
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
     <ignored path="$PROJECT_DIR$/boot-first/target/" />
@@ -48,7 +41,7 @@
     <session id="1503752669">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="3" />
+          <entry key="project.closed" value="4" />
           <entry key="project.open.time.1" value="1" />
           <entry key="project.open.time.44" value="1" />
           <entry key="project.open.time.45" value="1" />
@@ -157,8 +150,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/boot-mvc/src/main/java/org/yuanxing/bootmvc/bean/User.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="414">
-              <caret line="21" column="5" lean-forward="true" selection-start-line="21" selection-start-column="5" selection-end-line="21" selection-end-column="5" />
+            <state relative-caret-position="437">
+              <caret line="22" lean-forward="true" selection-start-line="22" selection-end-line="22" />
               <folding>
                 <element signature="e#295#296#0" expanded="true" />
                 <element signature="e#326#327#0" expanded="true" />
@@ -294,7 +287,7 @@
       <select />
     </treeState>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="856" />
     <option name="y" value="31" />
     <option name="width" value="902" />
@@ -316,89 +309,6 @@
               <item name="bootStudy" type="b2602c69:ProjectViewProjectNode" />
               <item name="bootStudy" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="bootStudy" type="b2602c69:ProjectViewProjectNode" />
-              <item name="bootStudy" type="462c0819:PsiDirectoryNode" />
-              <item name="boot-mvc" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="bootStudy" type="b2602c69:ProjectViewProjectNode" />
-              <item name="bootStudy" type="462c0819:PsiDirectoryNode" />
-              <item name="boot-mvc" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="bootStudy" type="b2602c69:ProjectViewProjectNode" />
-              <item name="bootStudy" type="462c0819:PsiDirectoryNode" />
-              <item name="boot-mvc" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="bootStudy" type="b2602c69:ProjectViewProjectNode" />
-              <item name="bootStudy" type="462c0819:PsiDirectoryNode" />
-              <item name="boot-mvc" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="bootStudy" type="b2602c69:ProjectViewProjectNode" />
-              <item name="bootStudy" type="462c0819:PsiDirectoryNode" />
-              <item name="boot-mvc" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="bootmvc" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="bootStudy" type="b2602c69:ProjectViewProjectNode" />
-              <item name="bootStudy" type="462c0819:PsiDirectoryNode" />
-              <item name="boot-mvc" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="bootmvc" type="462c0819:PsiDirectoryNode" />
-              <item name="day1" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="bootStudy" type="b2602c69:ProjectViewProjectNode" />
-              <item name="bootStudy" type="462c0819:PsiDirectoryNode" />
-              <item name="boot-mvc" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="bootmvc" type="462c0819:PsiDirectoryNode" />
-              <item name="day1" type="462c0819:PsiDirectoryNode" />
-              <item name="controller" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="bootStudy" type="b2602c69:ProjectViewProjectNode" />
-              <item name="bootStudy" type="462c0819:PsiDirectoryNode" />
-              <item name="boot-mvc" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="bootStudy" type="b2602c69:ProjectViewProjectNode" />
-              <item name="bootStudy" type="462c0819:PsiDirectoryNode" />
-              <item name="boot-mvc" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="bootStudy" type="b2602c69:ProjectViewProjectNode" />
-              <item name="bootStudy" type="462c0819:PsiDirectoryNode" />
-              <item name="boot-mvc" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
-              <item name="mvc1" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
@@ -414,7 +324,7 @@
     <property name="RequestMappingsPanelWidth1" value="75" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1558767715233" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1558778572449" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="project.structure.last.edited" value="Modules" />
@@ -540,18 +450,17 @@
       <workItem from="1558572119719" duration="1074000" />
       <workItem from="1558602415564" duration="3343000" />
       <workItem from="1558659991090" duration="15280000" />
-      <workItem from="1558746057117" duration="8036000" />
+      <workItem from="1558746057117" duration="8645000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="91791000" />
+    <option name="totallyTimeSpent" value="92400000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="7" />
-    <editor active="true" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.20255864" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.20255864" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -562,7 +471,7 @@
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
       <window_info anchor="bottom" id="Run" order="2" sideWeight="0.76492536" weight="0.28036323" />
-      <window_info active="true" anchor="bottom" id="Debug" order="3" sideWeight="0.8566098" visible="true" weight="0.0" />
+      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.8566098" weight="0.0" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -1001,8 +910,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/boot-mvc/src/main/java/org/yuanxing/bootmvc/bean/User.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="414">
-          <caret line="21" column="5" lean-forward="true" selection-start-line="21" selection-start-column="5" selection-end-line="21" selection-end-column="5" />
+        <state relative-caret-position="437">
+          <caret line="22" lean-forward="true" selection-start-line="22" selection-end-line="22" />
           <folding>
             <element signature="e#295#296#0" expanded="true" />
             <element signature="e#326#327#0" expanded="true" />
