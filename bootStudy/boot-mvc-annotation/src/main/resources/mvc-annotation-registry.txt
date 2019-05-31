@@ -1,0 +1,23 @@
+2019.5.31
+    1.  FormatterRegistry extends ConverterRegistry
+        ①添加格式化转换器（Spring3.1 新增API）
+        void addFormatter(Formatter<?> formatter);
+        ②为指定的字段类型添加格式化转换器
+        void addFormatterForFieldType(Class<?> fieldType, Formatter<?> formatter);
+        ③为指定的字段类型添加Printer和Parser
+        void addFormatterForFieldType(Class<?> fieldType, Printer<?> printer, Parser<?> parser);
+        ④添加注解驱动的字段格式化工厂AnnotationFormatterFactory
+        void addFormatterForFieldAnnotation(AnnotationFormatterFactory<? extends Annotation> annotationFormatterFactory);
+
+    2.  Spring内建的格式化转换器
+        DateFormatter                                   java.util.Date<---->String      实现日期的格式化/解析
+        NumberFormatter                                 java.lang.Number<---->String    实现通用样式的格式化/解析
+        CurrencyFormatter                               java.lang.BigDecimal<---->String    实现货币样式的格式化/解析
+        PercentFormatter                                java.lang.Number<---->String    实现百分数样式的格式化/解析
+        NumberFormatAnnotationFormatterFactory          @NumberFormat注解类型的数字字段类型<---->String ①通过@NumberFormat指定格式化/解析格式 ②可以格式化/解析的数字类型：Short、Integer、Long、Float、Double、BigDecimal、BigInteger
+        JodaDateTimeFormatAnnotationFormatterFactory    @DateTimeFormat注解类型的日期字段类型<---->String
+                                                        ①通过@DateTimeFormat指定格式化/解析格式
+                                                        ②可以格式化/解析的日期类型：
+                                                        joda中的日期类型（org.joda.time包中的）：LocalDate、LocalDateTime、LocalTime、ReadableInstant
+                                                        java内置的日期类型：Date、Calendar、Long
+                                                        classpath中必须有Joda-Time类库，否则无法格式化日期类型

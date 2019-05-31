@@ -1,0 +1,26 @@
+2019.5.31
+    MVC配置
+    1. 启用mvc配置  @Configuration和@EnableWebMvc
+    2. MVC配置API implements WebMvcConfigurer
+    3. 类型转换(Type Conversion)
+       public void addFormatters(FormatterRegistry registry)   Formatter和Converter
+    4. 验证 (Validation)
+       public Validator getValidator()
+    5. 拦截器 (Interceptors)
+       public void addInterceptors(InterceptorRegistry registry)
+    6. 内容类型 (ContentTypes)
+       public void configureContentNegotiation(ContentNegotiationConfigurer configurer)
+    7. 消息转换器 (Message Converters)
+       public void configureMessageConverters(List<HttpMessageConverter<?>> converters)
+    8. 视图控制器 (View Controllers)
+       public void addViewControllers(ViewControllerRegistry registry)
+    9. 视图解析器 (View Resolvers)
+       public void configureViewResolvers(ViewResolverRegistry registry)
+    10.静态资源 (Static Resources)
+       public void addResourceHandlers(ResourceHandlerRegistry registry)
+    11.默认Servlet (Default Servlet)
+       public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer)
+    12.路径匹配 (Path Matching)
+       public void configurePathMatch(PathMatchConfigurer configurer)
+    13.
+
