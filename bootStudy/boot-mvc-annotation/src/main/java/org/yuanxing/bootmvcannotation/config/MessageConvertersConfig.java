@@ -4,7 +4,6 @@ import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.alibaba.fastjson.support.config.FastJsonConfig;
 import com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
@@ -21,7 +20,7 @@ import java.util.List;
  */
 
 //@EnableWebMvc //全面接管MVC配置
-@Configuration
+//@Configuration //测试时开启
 @Slf4j
 public class MessageConvertersConfig implements WebMvcConfigurer {
 
@@ -50,12 +49,6 @@ public class MessageConvertersConfig implements WebMvcConfigurer {
         FastJsonHttpMessageConverter fastJsonHttpMessageConverter = new FastJsonHttpMessageConverter();
         //2.添加fastJson的配置信息，比如：是否要格式化返回的json数据;
         FastJsonConfig fastJsonConfig = new FastJsonConfig();
-        fastJsonConfig.setSerializerFeatures(SerializerFeature.PrettyFormat,
-                SerializerFeature.WriteMapNullValue,
-                SerializerFeature.WriteNullStringAsEmpty,
-                SerializerFeature.DisableCircularReferenceDetect,
-                SerializerFeature.WriteNullListAsEmpty,
-                SerializerFeature.WriteDateUseDateFormat);
         //3处理中文乱码问题
         List<MediaType> fastMediaTypes = new ArrayList<MediaType>();
         fastMediaTypes.add(MediaType.APPLICATION_JSON_UTF8);
@@ -65,7 +58,12 @@ public class MessageConvertersConfig implements WebMvcConfigurer {
         fastJsonConfig.setCharset(Charset.forName("UTF-8"));  //默认字符集
         fastJsonConfig.setDateFormat("yyyy-MM-dd HH:mm:ss");
         //SerializerFeature.DisableCircularReferenceDetect,SerializerFeature.WriteMapNullValue
-        fastJsonConfig.setSerializerFeatures(SerializerFeature.PrettyFormat);
+        fastJsonConfig.setSerializerFeatures(SerializerFeature.PrettyFormat,
+                SerializerFeature.WriteMapNullValue,
+                SerializerFeature.WriteNullStringAsEmpty,
+                SerializerFeature.DisableCircularReferenceDetect,
+                SerializerFeature.WriteNullListAsEmpty,
+                SerializerFeature.WriteDateUseDateFormat);
         fastJsonHttpMessageConverter.setFastJsonConfig(fastJsonConfig);
         //fastJsonConfig.setSerializeConfig();  //序列化配置
         //fastJsonConfig.setParserConfig();     //解析器配置
