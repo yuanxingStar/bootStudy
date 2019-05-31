@@ -7,7 +7,7 @@ import org.springframework.core.convert.converter.Converter;
 import org.springframework.format.Formatter;
 import org.springframework.format.FormatterRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
-import org.yuanxing.bootmvcannotation.util.ContextUtil2;
+import org.yuanxing.bootmvcannotation.util.ContextUtil;
 
 import java.util.Map;
 
@@ -23,10 +23,13 @@ public class TypeConversionConfig implements WebMvcConfigurer {
 
     @Override
     public void addFormatters(FormatterRegistry registry) {
-        ApplicationContext ac = ContextUtil2.getApplicationContext();
+        ApplicationContext ac = ContextUtil.getApplicationContext();
 
         String[] allBeanNames = ac.getBeanDefinitionNames();
-        System.out.println(allBeanNames);
+        for(int i = 0 ; i < allBeanNames.length; i ++) {
+            System.out.println(allBeanNames[i]);
+        }
+
 
         try {
             System.out.println("**************  查看容器当前的converter");

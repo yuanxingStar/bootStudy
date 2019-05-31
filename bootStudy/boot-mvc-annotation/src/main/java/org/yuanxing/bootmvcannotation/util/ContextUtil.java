@@ -4,6 +4,7 @@ import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.lang.Nullable;
+import org.springframework.stereotype.Component;
 
 import java.lang.annotation.Annotation;
 import java.util.Map;
@@ -16,7 +17,7 @@ import java.util.Map;
  */
 
 
-//@Component
+@Component
 public class ContextUtil implements ApplicationContextAware {
 
     private static ApplicationContext applicationContext;
