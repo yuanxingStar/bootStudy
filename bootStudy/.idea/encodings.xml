@@ -6,6 +6,7 @@
     <file url="file://$PROJECT_DIR$/boot-first" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/boot-h2" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/boot-mvc" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/boot-mvc-annotation" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/boot-mybatis" charset="UTF-8" />
     <file url="PROJECT" charset="UTF-8" />
   </component>

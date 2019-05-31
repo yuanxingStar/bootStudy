@@ -11,6 +11,7 @@
         <option value="$PROJECT_DIR$/boot-druid/pom.xml" />
         <option value="$PROJECT_DIR$/boot-mvc/pom.xml" />
         <option value="$PROJECT_DIR$/boot-mybatis/pom.xml" />
+        <option value="$PROJECT_DIR$/boot-mvc-annotation/pom.xml" />
       </list>
     </option>
   </component>

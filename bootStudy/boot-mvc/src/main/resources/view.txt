@@ -124,7 +124,9 @@
    2.1  <mvc:view-controller path="" view-name="">
         直接将path对应的请求 view-name相应为视图
 
-   2.2  <mvc:annotation-driven></mvc:annotation-driven>
+   2.2  <mvc:annotation-driven></mvc:annotation-driven> 会帮你注册一堆默认的组件,消息转换器(MesageConverter)，映射器，适配器
+
+
 
    2.3  <context:component-scan base-package="">
         自动扫描配置
