@@ -1,0 +1,131 @@
+2019.5.30
+    1.基于 @EnableWebMvc 对于spring-mvc的学习。
+        @EnableWebMvc 只能添加到一个@Configuration配置类上，用于导入Spring Web MVC configuration
+        可以有多个@Configuration类来实现WebMvcConfigurer，以定制提供的配置。
+        WebMvcConfigurer 没有暴露高级设置，如果需要高级设置 需要 删除@EnableWebMvc并继承WebMvcConfigurationSupport
+
+        说明：
+            Spring Boot 默认提供Spring MVC 自动配置，不需要使用@EnableWebMvc注解
+            如果使用@EnableWebMvc注解 ,将全面接管boot上的MVC配置。 boot上默认的MVC会失效。
+                Spring Boot在application文件中的配置失效
+                在Spring Boot的自定义配置类加上@EnableWebMvc后，发现自动配置的静态资源路径（classpath:/META/resources/，classpath:/resources/，classpath:/static/，classpath:/public/）资源无法访问。
+                通过查看@EnableWebMvc的源码，可以发现该注解就是为了引入一个DelegatingWebMvcConfiguration 配置类，而DelegatingWebMvcConfiguration又继承于WebMvcConfigurationSupport。也就是说，如果我们使用@EnableWebMvc就相当于导入了WebMvcConfigurationSupport类，这个时候，
+                Spring Boot的自动装配就不会发生了，我们能用的，只有WebMvcConfigurationSupport提供的若干个配置。其实不使用@EnableWebMvc注解也是可以实现配置Webmvc，只需要将配置类继承于WebMvcConfigurationSupport类即可。
+                当使用@EnableWebMvc时，加载的是WebMvcConfigurationSupport中的配置项。
+                当不使用@EnableWebMvc时，使用的是WebMvcAutoConfiguration引入的配置项。
+                @Configuration
+                @ConditionalOnWebApplication(type = Type.SERVLET)
+                @ConditionalOnClass({ Servlet.class, DispatcherServlet.class, WebMvcConfigurer.class })
+                @ConditionalOnMissingBean(WebMvcConfigurationSupport.class)
+                @AutoConfigureOrder(Ordered.HIGHEST_PRECEDENCE + 10)
+                @AutoConfigureAfter({ DispatcherServletAutoConfiguration.class,
+                		ValidationAutoConfiguration.class })
+                public class WebMvcAutoConfiguration {
+                	...
+                }
+                自动配置类 WebMvcAutoConfiguration 上有条件注解@ConditionalOnMissingBean(WebMvcConfigurationSupport.class)
+                这个注解的意思是在项目类路径中缺少 WebMvcConfigurationSupport类型的bean时改自动配置类才会生效
+
+                有时候我们需要自己定制一些项目的设置，可以有以下几种使用方式：
+                (1) @EnableWebMvc+extends WebMvcConfigurationAdapter，在扩展的类中重写父类的方法即可，这种方式会屏蔽springboot的@EnableAutoConfiguration中的设置
+                (2) extends WebMvcConfigurationSupport，在扩展的类中重写父类的方法即可，这种方式会屏蔽springboot的@EnableAutoConfiguration中的设置
+                (3) extends WebMvcConfigurationAdapter/WebMvcConfigurer，在扩展的类中重写父类的方法即可，这种方式依旧使用springboot的@EnableAutoConfiguration中的设置
+
+                WebMvcConfigurer 没有暴露高级设置，如果需要高级设置 需要第二种方式继承WebMvcConfigurationSupport或者DelegatingWebMvcConfiguration，例如：
+                   @Configuration
+                   @ComponentScan(basePackageClasses = { MyConfiguration.class })
+                   public class MyConfiguration extends WebMvcConfigurationSupport {
+                   	   @Override
+                  	   public void addFormatters(FormatterRegistry formatterRegistry) {
+                           formatterRegistry.addConverter(new MyConverter());
+                  	   }
+                  	   @Bean
+                  	   public RequestMappingHandlerAdapter requestMappingHandlerAdapter() {
+                           // Create or delegate to "super" to create and
+                           // customize properties of RequestMappingHandlerAdapter
+                  	   }
+                   }
+                所以无论是使用@EnableWebMvc还是WebMvcConfigurationSupport，都会禁止Spring Boot的自动装配@EnableAutoConfiguration中的设置(
+                虽然禁止了Spring boot的自动装配，但是WebMvcConfigurationSupport本身，还是会注册一系列的MVC相关的bean的)。
+                @EnableAutoConfiguration是SpringBoot项目的启动类注解@SpringBootApplication的子元素，@EnableAutoConfiguration实际是导入
+                EnableAutoConfigurationImportSelector和Registar两个类，主要功能是通过SpringFactoriesLoader.loadFactoryNames()导入jar下面配置文件META-INF/spring.factories。
+                我们翻spring.factories，其中就包含WebMvc自动装配类：
+
+                ...
+                # Auto Configure
+                org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+                org.springframework.boot.autoconfigure.web.WebMvcAutoConfiguration,\
+                ...
+                并且@EnableAutoConfiguration 注解，会自动读取 application.properties 或 application.yml 文件中的配置。因此想想前面提到的第一个问题就很明白了。
+
+                如果想要使用自动配置生效，同时又要使用部分spring mvc默认配置的话，比如增加 viewController ，则可以将自己的配置类可以继承 WebMvcConfigurerAdapter 这个类。不过在Spring5.0版本WebMvcConfigurerAdapter 后这个类被标记为@Deprecated了 。
+
+                 * @author Rossen Stoyanchev
+                 * @since 3.1
+                 * @deprecated as of 5.0 {@link WebMvcConfigurer} has default methods (made
+                 * possible by a Java 8 baseline) and can be implemented directly without the
+                 * need for this adapter
+                 */
+                @Deprecated
+                public abstract class WebMvcConfigurerAdapter implements WebMvcConfigurer {
+                	...
+                }
+                Spring 5.0后要使用Java8，而在Java8中接口是可以有default方法的，所以这个类就没必要了。所以我们只需要在自定义配置类中直接实现 WebMvcConfigurer 接口就好了
+
+                import org.springframework.context.annotation.Configuration;
+                import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
+                import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+
+                @Configuration
+                public class MyWebConfig implements WebMvcConfigurer {
+
+                    @Override
+                    public void addViewControllers(ViewControllerRegistry registry) {
+                        registry.addViewController("/hello").setViewName("helloworld");
+                    }
+                }
+                When we access URL /hello then helloworld.jsp will run.
+
+                对于第二个问题，如果使用@EnableWebMvc了，那么就会自动覆盖了官方给出的/static, /public, META-INF/resources, /resources等存放静态资源的目录。而将静态资源定位于src/main/webapp。当需要重新定义好资源所在目录时，则需要主动添加上述的那个配置类，来重写 addResourceHandlers方法。
+
+                @Configuration
+                @EnableWebMvc
+                public class MyWebConfig implements WebMvcConfigurer {
+                	@Override
+                	public void addResourceHandlers(ResourceHandlerRegistry registry) {
+                	   registry.addResourceHandler("/**")
+                	           .addResourceLocations("classpath:/public/");
+                	}
+                }
+                从上述可知在SpringBoot中大多数时我们并不需要使用@EnableWebMvc注解，来看下官方的一段说明:
+                Spring Boot provides auto-configuration for Spring MVC that works well with most applications.
+                If you want to keep Spring Boot MVC features and you want to add additional MVC configuration (interceptors, formatters, view controllers, and other features),
+                you can add your own @Configuration class of type WebMvcConfigurer but without @EnableWebMvc.
+                If you want to take complete control of Spring MVC, you can add your own @Configuration annotated with @EnableWebMvc
+                Spring Boot为Spring MVC提供自动配置，适用于大多数应用程序。
+                如果要保留Spring Boot MVC功能并且想要添加其他MVC配置（拦截器，格式化程序，视图控制器和其他功能），可以添加自己的@Configuration类WebMvcConfigurer但不使用@EnableWebMvc。
+                如果您想完全控制Spring MVC，可以添加自己的@Configuration注释@EnableWebMvc
+                Normally you would add @EnableWebMvc for a Spring MVC app, but Spring Boot adds it automatically when it sees spring-webmvc on the classpath.
+                This flags the application as a web application and activates key behaviors such as setting up a DispatcherServlet.
+                通常你会为Spring MVC应用程序添加@EnableWebMvc，但Spring Boot会在类路径上看到spring-webmvc时自动添加它。 这会将应用程序标记为Web应用程序并激活关键行为，例如设置DispatcherServlet。
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
