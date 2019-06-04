@@ -1,0 +1,132 @@
+2019.5.31
+    1.  FormatterRegistry extends ConverterRegistry
+        ①添加格式化转换器（Spring3.1 新增API）
+        void addFormatter(Formatter<?> formatter);
+        ②为指定的字段类型添加格式化转换器
+        void addFormatterForFieldType(Class<?> fieldType, Formatter<?> formatter);
+        ③为指定的字段类型添加Printer和Parser
+        void addFormatterForFieldType(Class<?> fieldType, Printer<?> printer, Parser<?> parser);
+        ④添加注解驱动的字段格式化工厂AnnotationFormatterFactory
+        void addFormatterForFieldAnnotation(AnnotationFormatterFactory<? extends Annotation> annotationFormatterFactory);
+
+    2.  Spring内建的格式化转换器
+        DateFormatter                                   java.util.Date<---->String      实现日期的格式化/解析
+        NumberFormatter                                 java.lang.Number<---->String    实现通用样式的格式化/解析
+        CurrencyFormatter                               java.lang.BigDecimal<---->String    实现货币样式的格式化/解析
+        PercentFormatter                                java.lang.Number<---->String    实现百分数样式的格式化/解析
+        NumberFormatAnnotationFormatterFactory          @NumberFormat注解类型的数字字段类型<---->String ①通过@NumberFormat指定格式化/解析格式 ②可以格式化/解析的数字类型：Short、Integer、Long、Float、Double、BigDecimal、BigInteger
+        JodaDateTimeFormatAnnotationFormatterFactory    @DateTimeFormat注解类型的日期字段类型<---->String
+                                                        ①通过@DateTimeFormat指定格式化/解析格式
+                                                        ②可以格式化/解析的日期类型：
+                                                        joda中的日期类型（org.joda.time包中的）：LocalDate、LocalDateTime、LocalTime、ReadableInstant
+                                                        java内置的日期类型：Date、Calendar、Long
+                                                        classpath中必须有Joda-Time类库，否则无法格式化日期类型
+
+
+    Converter 是通用元件，可以在应用程序的任意层使用，而Formatter则是专门为Web层设计的
+    3.Converter(转换器)
+        3.1Spring 的Converter是可以将一种类型转换成另外一种类型的一个对象
+        (字符串去空 ,统一大小写 ,日期格式化 )
+        创建自定义的Converter需要实现 org.springframework.core.convert.converter.Converter接口
+        public interface Converter<S, T>         泛型S表示源类型， 泛型T表示目标类型
+        String -> Date      public class StringToDateConverter<String,Date>
+            /**
+             * 重写convert方法
+             */
+            @Override
+            public Date convert(String source) {
+                try {
+                    SimpleDateFormat sdf = new SimpleDateFormat(datePattern);
+                    // 是否严格解析日期,设置false禁止SimpleDateFormat的自动计算功能
+                    sdf.setLenient(false);
+                    targetFormateDate = sdf.parse(source);
+                } catch (ParseException e) {
+                    // the error message will be displayed when using <form:errors>
+                    e.printStackTrace();
+                    throw new IllegalArgumentException("invalid date format. Please use this pattern\"" + datePattern + "\"");
+                }
+                return targetFormateDate;
+            }
+         String -> Date     public class StringTrimConverter<String,String>
+         /**
+          * 去除前后空格
+          */
+         public class StringTrimConverter implements Converter<String, String> {
+             public String convert(String source) {
+                 //如果源字符串不为空则进行转换
+                 if(source != null){
+                     //去除源字符串前后空格
+                     source = source.trim();
+                     if(source.equals("")){
+                         source = null;
+                     }
+                 }
+                 return source;
+             }
+         }
+
+         3.2配置bean及设置conversion-service属性
+         XML方式配置：
+         <bean id="conversionService"
+                     class="org.springframework.context.support.ConversionServiceFactoryBean">
+                 <property name="converters">
+                     <list>
+                         <bean class="org.yuanxing.bootmvcannotation.converter.StringToDateConverter">
+                             <constructor-arg type="java.lang.String" value="MM-dd-yyyy"/>
+                         </bean>
+                     </list>
+                 </property>
+         </bean>
+         注解方式配置：
+        public void addFormatters(FormatterRegistry registry)
+
+        3.3 ConversionService
+        public interface ConversionService {
+            boolean canConvert(Class<?> sourceType, Class<?> targetType);
+            <T> T convert(Object source, Class<T> targetType);
+            boolean canConvert(TypeDescriptor sourceType, TypeDescriptor targetType);
+            Object convert(Object source, TypeDescriptor sourceType, TypeDescriptor targetType);
+        }
+        ConversionService接口里面定义了两个canConvert方法和两个convert方法，canConvert方法用于判断当前的ConversionService是否能够
+        对原类型和目标类型进行转换，convert方法则是用于进行类型转换的。上面出现的参数类型TypeDescriptor是对于一种类型的封装，里面包含该
+        种类型的值、实际类型等等信息
+
+    4.Formatter (格式化器)
+        4.1Formatter就像Converter一样，也是将一种类型转换为另外一种类型，但是Formatter的源类型必须是String，而Converter的源类型可以是任意类型。
+        Formatter更加适合Web层，而Converter则可以在任意层中。
+        public interface Formatter<T> extends Printer<T>, Parser<T>
+        public interface Parser<T> {T parse(String text, Locale locale) throws ParseException;}
+        public interface Printer<T> {String print(T object, Locale locale);}
+        parse方法利用指定Locale将一个String解析为目标类型
+        print方法与之相反，它是返回目标对象的字符串表示法
+
+        4.2
+        <bean id="conversionService"
+                class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
+                <property name="formatters">
+                    <set>
+                        <bean class="org.yuanxing.bootmvcannotation.formatter.DatesFormatter">
+                            <constructor-arg type="java.lang.String" value="MM-dd-yyyy" />
+                        </bean>
+                    </set>
+                </property>
+            </bean>
+        为了在Spring中使用Formatter，需要注册org.springframework.format.support.FormattingConversionServiceFactoryBean这个bean。
+        这个bean与converter的
+        org.springframework.context.support.ConversionServiceFactoryBean 不同，FormattingConversionServiceFactoryBean可以用一个formatters属性注册Formatter，也可以用converters属性注册converter
+        注册Formatter的另外一种方式是使用Registrar.
+        <bean id="conversionService"
+                class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
+                <property name="formatterRegistrars">
+                    <set>
+                        <bean class="org.yuanxing.bootmvcannotation.formatter.MyFormatterRegistrar">
+                            <constructor-arg type="java.lang.String" value="MM-dd-yyyy" />
+                        </bean>
+                    </set>
+                </property>
+            </bean>
+
+
+
+
+
