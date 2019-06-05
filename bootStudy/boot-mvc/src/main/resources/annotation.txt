@@ -1,0 +1,41 @@
+2019.6.5
+    1.@CookieValue 注解的使用
+       value：参数名称 JSESSIONID
+       required：是否必须
+       defaultValue：默认值
+
+    2.@PathVariable注解的学习使用
+        带占位符的 URL 是 Spring3.0 新增的功能，该功能在SpringMVC 向 REST 目标挺进发展过程中具有里程碑的意义
+        通过 @PathVariable 可以将 URL 中占位符参数绑定到控制器处理方法的入参中：URL 中的 {xxx} 占位符可以通过@PathVariable(“xxx“) 绑定到操作方法的入参中。
+
+    3.@RequestBody 注解学习
+       -@requestBody注解常用来处理content-type不是默认的application/x-www-form-urlcoded编码的内容，比如说：application/json或者是application/xml等。一般情况下来说常用其来处理application/json类型。
+        @RequestBody主要用来接收前端传递给后端的json字符串中的数据的(请求体中的数据的)；GET方式无请求体，所以使用@RequestBody接收数据时，前端不能使用GET方式提交数据，而是用POST方式进行提交。在后端的同一个接收方法里，@RequestBody与@RequestParam()可以同时使用，@RequestBody最多只能有一个，而@RequestParam()可以有多个。
+        注：一个请求，只有一个RequestBody；一个请求，可以有多个RequestParam
+
+    4.@RequestHeader注解学习使用  获取请求头文件的信息
+         value值 对应头文件中的键
+         defaultValue 该参数的默认值 当键值没有传输时将使用这个参数进行赋值
+         required 是否必须。默认为 true, 表示请求参数中必须包含对应的参数，若不存在，将抛出异常
+
+    5.@RequestMapping： 注解为控制器指定可以处理哪些URL 请求
+        在控制器的类定义及方法定义处都可标注
+        类定义处：提供初步的请求映射信息。相对于 WEB 应用的根目录
+        方法处：提供进一步的细分映射信息。相对于类定义处的 URL。若
+        类定义处未标注 @RequestMapping，则方法处标记的 URL 相对于 WEB 应用的根目录
+        DispatcherServlet 截获请求后，就通过控制器上@RequestMapping 提供的映射信息确定请求所对应的处理方法。
+        @GetMapping
+        @PostMapping
+        @PutMapping
+        @DeleteMapping
+
+    6.@RequestParam 注解学习使用
+       将请求参数绑定至方法参数即你可以使用@RequestParam注解将请求参数绑定到你控制器的方法参数上
+            value：请求参数名（必须配置）
+            required：是否必需，默认为 true，即 请求中必须包含该参数，如果没有包含，将会抛出异常（可选配置）
+            defaultValue：默认值，如果设置了该值，required 将自动设为 false，无论你是否配置了required，配置了什么值，都是 false（可选配置）
+       具体配置方法：
+            配置一个属性 @RequestParam("") 或 @RequestParam(value="")
+            配置多个属性 @RequestParam(value="", required=true, defaultValue="")
+       值得注意的是：如果方法上的@RequestMapping 配置了 params 属性，则请求中也必须包含该参数
+            @RequestParam用于GET请求获取参数值，不能用于POST请求，PUT和DELETE请求需要测试!!

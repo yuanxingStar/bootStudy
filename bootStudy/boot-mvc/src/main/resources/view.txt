@@ -130,6 +130,19 @@
 
    2.3  <context:component-scan base-package="">
         自动扫描配置
+        {   httpRequestHandlerAdapter
+            simpleControllerHandlerAdapter
+            requestMappingHandlerAdapter
+            handlerExceptionResolver
+            requestMappingHandlerMapping }
+        会自动注
+        册RequestMappingHandlerMapping、RequestMappingHandlerAdapter 与ExceptionHandlerExceptionResolver 三个bean。
+        • 还将提供以下支持：
+        – 支持使用 ConversionService 实例对表单参数进行类型转换
+        – 支持使用 @NumberFormat annotation、@DateTimeFormat
+        注解完成数据类型的格式化
+        – 支持使用 @Valid 注解对 JavaBean 实例进行 JSR 303 验证
+        – 支持使用 @RequestBody 和 @ResponseBody 注解
 
    2.4  <mvc:default-servlet-handler/>
         DefaultServletHttpRequestHandler 处理静态资源请求

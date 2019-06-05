@@ -1,0 +1,34 @@
+2019.6.4
+    1.  validation 验证器
+        <dependency>
+             <groupId>org.springframework.boot</groupId>
+             <artifactId>spring-boot-starter-validation</artifactId>
+        </dependency>
+
+    2.
+        JSR提供的校验注解：
+        @NotNull                不能为null，可以是空
+        @Null                   必须为null
+        @AssertFalse            可以为null,如果不为null的话必须为false
+        @AssertTrue             可以为null,如果不为null的话必须为true
+        @Max(value)             最大不得超过此最大值
+        @Min(value)             最大不得小于此最小值
+        @DecimalMax(value)      设置不能超过最大值
+        @DecimalMin(value)      设置不能超过最小值
+        @Size(max=, min=)       集合、数组、map等的size()值必须在指定范围内 限制字符长度必须在min到max之间
+        @Digits (integer, fraction)     被注释的元素必须是一个数字，其值必须在可接受的范围内 设置必须是数字且数字整数的位数和小数的位数必须在指定范围内
+        @Past                   被注释的元素必须是一个过去的日期 验证注解的元素值（日期类型）比当前时间早
+        @Future                 被注释的元素必须是一个将来的日期
+        @Pattern(regex=,flag=)  被注释的元素必须符合指定的正则表达式
+
+        Hibernate Validator提供的校验注解:
+        @Email         必须是email格式 验证注解的元素值是Email，也可以通过正则表达式和flag指定自定义的email格式
+        @Length        长度必须在指定范围内
+        @NotBlank      字符串不能为null,字符串trin()后也不能等于“” 验证注解的元素值不为空（不为null、去除首位空格后长度为0），
+                       不同于@NotEmpty，@NotBlank只应用于字符串且在比较时会去除字符串的空格
+        @NotEmpty      不能为null，集合、数组、map等size()不能为0；字符串trin()后可以等于“”
+                       验证注解的元素值不为null且不为空（字符串长度不为0、集合大小不为0）
+        @Range         值必须在指定范围内
+        @URL           必须是一个URL
+
+
