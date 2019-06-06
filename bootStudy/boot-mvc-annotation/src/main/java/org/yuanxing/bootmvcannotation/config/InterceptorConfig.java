@@ -1,9 +1,6 @@
 package org.yuanxing.bootmvcannotation.config;
 
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.boot.web.servlet.ServletComponentScan;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.yuanxing.bootmvcannotation.interceptor.MyWebRequestInterceptor;
@@ -44,16 +41,36 @@ import org.yuanxing.bootmvcannotation.interceptor.RootInterceptor;
 
  */
 
-@EnableWebMvc //全面接管MVC配置
-@Configuration //测试时开启
+//@EnableWebMvc //全面接管MVC配置
+//@Configuration //测试时开启
 @Slf4j
-@ServletComponentScan("org.yuanxing.bootmvcannotation.filter")
+//@ServletComponentScan("org.yuanxing.bootmvcannotation.filter")
 public class InterceptorConfig implements WebMvcConfigurer {
 
+
+    /**
+     * springboot 配置字符过滤器
+     * spring.http.encoding.charset=UTF-8 # HTTP请求和响应的字符集。如果未显式设置，则添加到“Content-Type”头中
+     * spring.http.encoding.enabled=true # 是否启用http编码支持.
+     * spring.http.encoding.force= #  是否在HTTP请求和响应上强制编码到配置的字符集
+     * spring.http.encoding.force-request= # 是否在HTTP请求中强制编码到配置的字符集。如果未指定“force”，则默认为true
+     * spring.http.encoding.force-response= # 是否在HTTP响应上强制编码到配置的字符集.
+     * spring.http.encoding.mapping= # 用于编码映射的区域设置.
+
+     * @return
+     */
+/*    @Bean
+    public FilterRegistrationBean filterRegistrationBean() {
+        FilterRegistrationBean registrationBean = new FilterRegistrationBean();
+        CharacterEncodingFilter characterEncodingFilter = new CharacterEncodingFilter();
+        characterEncodingFilter.setForceEncoding(true);
+        characterEncodingFilter.setEncoding("utf-8");
+        registrationBean.setFilter(characterEncodingFilter);
+        return registrationBean;
+    }*/
+
+
     public void addInterceptors(InterceptorRegistry registry) {
-
-
-
         //添加一个 HandlerInterceptor
         registry.addInterceptor(new RootInterceptor())
                 .addPathPatterns("/**")
@@ -65,9 +82,5 @@ public class InterceptorConfig implements WebMvcConfigurer {
                 .addPathPatterns("/**")
                 .excludePathPatterns("")
                 .order(0);
-
-
-
-
     }
 }
