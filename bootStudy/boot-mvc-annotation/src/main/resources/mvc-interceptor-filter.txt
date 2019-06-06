@@ -1,0 +1,223 @@
+2019.6.6  interceptor & filter
+    1.  过滤器 (Filter)
+        1.1配置web.xml添加一个过滤器解决字符编码乱码问题
+        <filter>
+            <filter-name>encoding</filter-name>
+            <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+            <init-param>
+                <param-name>encoding</param-name>
+                <param-value>UTF-8</param-value>
+            </init-param>
+            <init-param>
+                <param-name>forceEncoding</param-name>
+                <param-value>true</param-value>
+            </init-param>
+        </filter>
+        <filter-mapping>
+            <filter-name>encoding</filter-name>
+            <servlet-name>/*</servlet-name>
+        </filter-mapping>
+        1.2
+        它依赖于servlet容器。在实现上，基于函数回调，它可以对几乎所有请求进行过滤，但是缺点是一个过滤器实例只能在容器初始化时调用一次。
+        使用过滤器的目的，是用来做一些过滤操作，获取我们想要获取的数据，比如：在Javaweb中，对传入的request、response提前过滤掉一些信息，或者提前设置一些参数，
+        然后再传入servlet或者Controller进行业务逻辑操作。通常用的场景是：在过滤器中修改字符编码（CharacterEncodingFilter）、在过滤器中修改HttpServletRequest
+        的一些参数（XSSFilter(自定义过滤器)），如：过滤低俗文字、危险字符、URL级别的权限控制、过滤敏感词汇、压缩响应信息等
+        1.3 测试过滤器代码
+        public class TestFilter1 extends Filter {
+                /**
+                *  初始化执行
+                */
+                @Override
+                    public void init(FilterConfig filterConfig) throws ServletException {
+                    }
+        		@Override
+          	    public void doFilter(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
+                //在DispatcherServlet之前执行
+        		System.out.println("############TestFilter1 doFilterInternal executed############");
+                filterChain.doFilter(request, response);
+                //在视图页面返回给客户端之前执行，但是执行顺序在Interceptor之后
+                System.out.println("############TestFilter1 doFilter after############");
+            }
+                /**
+                * 销毁执行
+                */
+                @Override
+                    public void destroy() {
+                    }
+        }
+        public class TestFilter2 extends Filter {
+
+        	@Override
+            protected void doFilter(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
+        	    //在DispatcherServlet之前执行
+                System.out.println("############TestFilter2 doFilterInternal executed############");
+                filterChain.doFilter(request, response);
+                //在视图页面返回给客户端之前执行，但是执行顺序在Interceptor之后
+                System.out.println("############TestFilter2 doFilter after############");
+            }
+        }
+
+        1.4注入方式(配置文件 在web.xml文件中注入)
+        <filter>
+        	 <filter-name>testFilter1</filter-name>
+        	 <filter-class>com.scorpios.filter.TestFilter1</filter-class>
+        </filter>
+        <filter-mapping>
+        	 <filter-name>testFilter1</filter-name>
+        	 <url-pattern>/*</url-pattern>
+        </filter-mapping>
+        <!-- 自定义过滤器：testFilter2 -->
+        <filter>
+            <filter-name>testFilter2</filter-name>
+            <filter-class>com.scorpios.filter.TestFilter2</filter-class>
+        </filter>
+        <filter-mapping>
+        	 <filter-name>testFilter2</filter-name>
+        	 <url-pattern>/*</url-pattern>
+        </filter-mapping>
+        java类中注解方式注入
+        @Component
+        @WebFilter(urlPatterns = "/Blogs",filterName = "blosTest")
+        public class TestFilter implements Filter{
+
+        }
+
+        1.5 Filter工作原理
+        当客户端发出Web资源的请求时，Web服务器根据应用程序配置文件设置的过滤规则进行检查，若客户请求满足过滤规则，则对客户请求／响应进行拦截，
+        对请求头和请求数据进行检查或改动，并依次通过过滤器链，最后把请求／响应交给请求的Web资源处理。请求信息在过滤器链中可以被修改，
+        也可以根据条件让请求不发往资源处理器，并直接向客户机发回一个响应。当资源处理器完成了对资源的处理后，响应信息将逐级逆向返回。
+        同样在这个过程中，用户可以修改响应信息，从而完成一定的任务。
+        服务器会按照过滤器定义的先后循序组装成一条链，然后一次执行其中的doFilter()方法。（注：这一点Filter和Servlet是不一样的）执行的顺序就如下图所示，
+        执行第一个过滤器的chain.doFilter()之前的代码，第二个过滤器的chain.doFilter()之前的代码，请求的资源，第二个过滤器的chain.doFilter()之后的代码，
+        第一个过滤器的chain.doFilter()之后的代码，最后返回响应。
+
+
+
+
+    2.  拦截器（Interceptor）
+        2.1 拦截器的配置在SpringMVC的配置文件中，使用Interceptors标签
+        <mvc:interceptors>
+            <mvc:interceptor>
+                <mvc:mapping path="/**" />
+                <bean class="com.scorpios.atcrowdfunding.web.LoginInterceptor"></bean>
+            </mvc:interceptor>
+            <mvc:interceptor>
+                <mvc:mapping path="/**" />
+                <bean class="com.scorpios.atcrowdfunding.web.AuthInterceptor"></bean>
+            </mvc:interceptor>
+        </mvc:interceptors>
+
+        2.2
+        拦截器（Interceptor）：它依赖于web框架，在SpringMVC中就是依赖于SpringMVC框架。在实现上,基于Java的反射机制，属于面向切面编程（AOP）的一种运用，
+        就是在service或者一个方法前，调用一个方法，或者在方法后，调用一个方法，比如动态代理就是拦截器的简单实现，在调用方法前打印出字符串（或者做其它业务逻辑的操作），
+        也可以在调用方法后打印出字符串，甚至在抛出异常的时候做业务逻辑的操作。由于拦截器是基于web框架的调用，因此可以使用Spring的依赖注入（DI）进行一些业务操作，
+        同时一个拦截器实例在一个controller生命周期之内可以多次调用。但是缺点是只能对controller请求进行拦截，对其他的一些比如直接访问静态资源的请求则没办法进行拦截处理
+
+        2.3 测试拦截器代码
+        public class BaseInterceptor implements HandlerInterceptor{
+            /**
+             * 在DispatcherServlet之前执行
+             * */
+            public boolean preHandle(HttpServletRequest arg0, HttpServletResponse arg1, Object arg2) throws Exception {
+                System.out.println("************BaseInterceptor preHandle executed**********");
+                return true;
+            }
+            /**
+             * 在controller执行之后的DispatcherServlet之后执行
+             * */
+            public void postHandle(HttpServletRequest arg0, HttpServletResponse arg1, Object arg2, ModelAndView arg3) throws Exception {
+                System.out.println("************BaseInterceptor postHandle executed**********");
+            }
+            /**
+             * 在页面渲染完成返回给客户端之前执行
+             * */
+            public void afterCompletion(HttpServletRequest arg0, HttpServletResponse arg1, Object arg2, Exception arg3)
+                    throws Exception {
+                System.out.println("************BaseInterceptor afterCompletion executed**********");
+            }
+        }
+        public class TestInterceptor implements HandlerInterceptor {
+            public boolean preHandle(HttpServletRequest arg0, HttpServletResponse arg1, Object arg2) throws Exception {
+                System.out.println("************TestInterceptor preHandle executed**********");
+                return true;
+            }
+            public void postHandle(HttpServletRequest arg0, HttpServletResponse arg1, Object arg2, ModelAndView arg3) throws Exception {
+                System.out.println("************TestInterceptor postHandle executed**********");
+            }
+            public void afterCompletion(HttpServletRequest arg0, HttpServletResponse arg1, Object arg2, Exception arg3) throws Exception {
+                System.out.println("************TestInterceptor afterCompletion executed**********");
+            }
+        }
+
+        <!-- 拦截器 -->
+        	<mvc:interceptors>
+        	    <!-- 对所有请求都拦截，公共拦截器可以有多个 -->
+        	    <bean name="baseInterceptor" class="com.scorpios.interceptor.BaseInterceptor" />
+
+        		<mvc:interceptor>
+        		    <!-- 对/test.html进行拦截 -->
+        	        <mvc:mapping path="/test.html"/>
+        	        <!-- 特定请求的拦截器只能有一个 -->
+        	        <bean class="com.scorpios.interceptor.TestInterceptor" />
+        	    </mvc:interceptor>
+        	</mvc:interceptors>
+
+
+    3. 总结
+        3.1
+            （1）、Filter需要在web.xml中配置，依赖于Servlet；
+            （2）、Interceptor需要在SpringMVC中配置，依赖于框架；
+            （3）、Filter的执行顺序在Interceptor之前
+            （4）、两者的本质区别：拦截器（Interceptor）是基于Java的反射机制，而过滤器（Filter）是基于函数回调。从灵活性上说拦截器功能更强大些，
+            Filter能做的事情，都能做，而且可以在请求前，请求后执行，比较灵活。Filter主要是针对URL地址做一个编码的事情、过滤掉没用的参数、安全校验（比较泛的，比如登录不登录之类），
+            太细的话，还是建议用interceptor。不过还是根据不同情况选择合适的。
+
+        3.2 区别
+            ①拦截器是基于java的反射机制的，而过滤器是基于函数回调。
+            ②拦截器不依赖与servlet容器，过滤器依赖与servlet容器。
+            ③拦截器只能对action请求起作用，而过滤器则可以对几乎所有的请求起作用。
+            ④拦截器可以访问action上下文、值栈里的对象，而过滤器不能访问。
+            ⑤在action的生命周期中，拦截器可以多次被调用，而过滤器只能在容器初始化时被调用一次。
+            ⑥拦截器可以获取IOC容器中的各个bean，而过滤器就不行，这点很重要，在拦截器里注入一个service，可以调用业务逻辑。
+
+        3.3 拦截器可以获取ioc中的service bean实现业务逻辑，拦截器可以获取ioc中的service bean实现业务逻辑，拦截器可以获取ioc中的service bean实现业务逻辑，
+            过滤器和拦截器触发时机(时间,地点)不一样:
+            过滤器是在请求进入容器后，但请求进入servlet之前进行预处理的。请求结束返回也是，是在servlet处理完后，返回给前端之前。
+            过滤器的触发时机是容器后，servlet之前，所以过滤器的doFilter(
+            ServletRequest request, ServletResponse response, FilterChain chain
+            )的入参是ServletRequest ，而不是httpservletrequest。因为过滤器是在httpservlet之前
+
+        3.4
+            (1).过滤器是JavaEE标准，采用函数回调的方式进行。是在请求进入容器之后，还未进入Servlet之前进行预处理，并且在请求结束返回给前端这之间进行后期处理。
+            @Override
+                public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
+                    System.out.println("before...");
+                    chain.doFilter(request, response);
+                    System.out.println("after...");
+                }
+            chain.doFilter(request, response);这个方法的调用作为分水岭。事实上调用Servlet的doService()方法是在chain.doFilter(request, response);这个方法中进行的。
+            (2).拦截器是被包裹在过滤器之中的。
+                @Override
+                public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
+                    System.out.println("preHandle");
+                    return true;
+                }
+
+                @Override
+                public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {
+                    System.out.println("postHandle");
+                }
+
+                @Override
+                public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception {
+                    System.out.println("afterCompletion");
+                }
+            　　a.preHandle()这个方法是在过滤器的chain.doFilter(request, response)方法的前一步执行，也就是在 [System.out.println("before...")][chain.doFilter(request, response)]之间执行。
+            　　b.preHandle()方法之后，在return ModelAndView之前进行，可以操控Controller的ModelAndView内容。
+            　　c.afterCompletion()方法是在过滤器返回给前端前一步执行，也就是在[chain.doFilter(request, response)][System.out.println("after...")]之间执行。
+            (3).SpringMVC的机制是由同一个Servlet来分发请求给不同的Controller，其实这一步是在Servlet的service()方法中执行的。所以过滤器、拦截器、service()方法，dispatc()方法的执行顺序应该是这样的，
+
+
+
+
+

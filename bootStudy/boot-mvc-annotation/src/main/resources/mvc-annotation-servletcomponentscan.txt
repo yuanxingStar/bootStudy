@@ -1,0 +1,40 @@
+2019.6.6
+    @ServletComponentScan  学习
+    1.使用@ServletComponentScan 注解后
+    Servlet可以直接通过@WebServlet注解自动注册
+    Filter可以直接通过@WebFilter注解自动注册
+    Listener可以直接通过@WebListener 注解自动注册
+
+    2.内部注解
+    @Target(ElementType.TYPE)
+    @Retention(RetentionPolicy.RUNTIME)
+    @Documented
+    @Import(ServletComponentScanRegistrar.class)
+        2.1向IOC容器中导入了ServletComponentScanRegistrar组件
+           进入ServletComponentScanRegistrar，发现该类向IOC容器中注册了一个BeanFactoty后置处理器ServletComponentRegisteringPostProcessor
+           public void postProcessBeanFactory(ConfigurableListableBeanFactory beanFactory){
+           		scanPackage(componentProvider, packageToScan);   1.通过该方法会从主程序的所在包下扫描组件
+           }
+
+           	private void scanPackage(
+           			ClassPathScanningCandidateComponentProvider componentProvider, String packageToScan) {
+           		for (BeanDefinition candidate : componentProvider
+           				.findCandidateComponents(packageToScan)) {
+           			if (candidate instanceof ScannedGenericBeanDefinition) {
+           				for (ServletComponentHandler handler : HANDLERS) {
+           				//2.遍历组件并且判断是否是ScannedGenericBeanDefinition，是的话就执行其handle方法
+           					handler.handle(((ScannedGenericBeanDefinition) candidate),
+           							(BeanDefinitionRegistry) this.applicationContext);
+           				}
+           			}
+           3.在handler方法中会执行doHandle(attributes, beanDefinition, registry);
+           4.doHandler方法中会将从扫描组件中获取的三大组件注册到IOC容器中
+           public void doHandle(Map<String, Object> attributes,
+           			ScannedGenericBeanDefinition beanDefinition,
+           			BeanDefinitionRegistry registry) {
+           		BeanDefinitionBuilder builder = BeanDefinitionBuilder
+           				.rootBeanDefinition(FilterRegistrationBean.class);
+           		builder.addPropertyValue("asyncSupported", attributes.get("asyncSupported"));
+           		......省略一些添加属性步骤的源码
+           		registry.registerBeanDefinition(name, builder.getBeanDefinition());
+           	}
