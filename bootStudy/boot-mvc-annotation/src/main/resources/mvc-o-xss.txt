@@ -1,0 +1,92 @@
+2019.6.6  XSS学习
+    1.什么是XSS攻击
+        XSS（Cross-Site Scripting）又称跨站脚本，XSS的重点不在于跨站点，而是在于脚本的执行。XSS是一种经常出现在 Web 应用程序中的计算机安全漏洞，是由于 Web 应用程序对用户的输入过滤不足而产生的
+
+    2.常见的XSS攻击
+        反射型、DOM-based 型、存储型。 其中反射型、DOM-based 型可以归类为非持久型 XSS 攻击，存储型归类为持久型 XSS 攻击。
+        2.1.反射型
+        反射型 XSS 一般是攻击者通过特定手法（如电子邮件），诱使用户去访问一个包含恶意代码的 URL，当受害者点击这些专门设计的链接的时候，恶意代码会直接在受害者主机上的浏览器执行。
+        对于访问者而言是一次性的，具体表现在我们把我们的恶意脚本通过 URL 的方式传递给了服务器，而服务器则只是不加处理的把脚本“反射”回访问者的浏览器而使访问者的浏览器执行相应的脚本。
+        反射型 XSS 的触发有后端的参与，要避免反射性 XSS，必须需要后端的协调，后端解析前端的数据时首先做相关的字串检测和转义处理。
+        此类 XSS 通常出现在网站的搜索栏、用户登录口等地方，常用来窃取客户端 Cookies 或进行钓鱼欺骗。
+        2.2.DOM-based 型
+        客户端的脚本程序可以动态地检查和修改页面内容，而不依赖于服务器端的数据。例如客户端如从 URL 中提取数据并在本地执行，如果用户在客户端输入的数据包含了恶意的 JavaScript 脚本，
+        而这些脚本没有经过适当的过滤和消毒，那么应用程序就可能受到 DOM-based XSS 攻击。需要特别注意以下的用户输入源 document.URL、 location.hash、 location.search、 document.referrer 等。
+        2.3.存储型
+        攻击者事先将恶意代码上传或储存到漏洞服务器中，只要受害者浏览包含此恶意代码的页面就会执行恶意代码。这就意味着只要访问了这个页面的访客，都有可能会执行这段恶意脚本，因此储存型XSS的危害会更大。
+        存储型 XSS 一般出现在网站留言、评论、博客日志等交互处，恶意脚本存储到客户端或者服务端的数据库中。
+
+    3.XSS危害
+      通过document.cookie盗取cookie
+      使用js或css破坏页面正常的结构与样式
+      流量劫持（通过访问某段具有window.location.href定位到其他页面）
+      Dos攻击：利用合理的客户端请求来占用过多的服务器资源，从而使合法用户无法得到服务器响应。
+      利用iframe、frame、XMLHttpRequest或上述Flash等方式，以（被攻击）用户的身份执行一些管理动作，或执行一些一般的如发微博、加好友、发私信等操作。
+      利用可被攻击的域受到其他域信任的特点，以受信任来源的身份请求一些平时不允许的操作，如进行不当的投票活动。
+
+    4.XSS防御
+      4.1 从以上的反射型和DOM XSS攻击可以看出，我们不能原样的将用户输入的数据直接存到服务器，需要对数据进行一些处理。以上的代码出现的一些问题如下:
+            没有过滤危险的DOM节点。如具有执行脚本能力的script, 具有显示广告和色情图片的img, 具有改变样式的link, style, 具有内嵌页面的iframe, frame等元素节点。
+            没有过滤危险的属性节点。如事件, style, src, href等
+            没有对cookie设置httpOnly。
+            如果将以上三点都在渲染过程中过滤，那么出现的XSS攻击的概率也就小很多。
+      4.2 解决方法如下
+            (1)对cookie的保护
+                对重要的cookie设置httpOnly, 防止客户端通过document.cookie读取cookie。服务端可以设置此字段。
+            (2)对用户输入数据的处理
+                编码：不能对用户输入的内容都保持原样，对用户输入的数据进行字符实体编码。对于字符实体的概念可以参考文章底部给出的参考链接。
+                解码：原样显示内容的时候必须解码，不然显示不到内容了。
+                过滤：把输入的一些不合法的东西都过滤掉，从而保证安全性。如移除用户上传的DOM属性，如onerror，移除用户上传的Style节点，iframe, script节点等。
+            通过一个例子讲解一下如何处理用户输入的数据。
+            实现原理如下：
+                存在一个parse函数，对输入的数据进行处理，返回处理之后的数据
+                对输入的数据（如DOM节点）进行解码（使用第三方库 he.js）
+                过滤掉一些元素有危害的元素节点与属性节点。如script标签，onerror事件等。（使用第三方库HTMLParser.js）
+            <script src='/javascripts/htmlparse.js'></script>
+            <script src='/javascripts/he.js'></script>
+            // 第三方库资源在文章底部给出
+
+            // parse函数实现如下
+            function parse (str) {
+                  // str假如为某个DOM字符串
+                  // 1. result为处理之后的DOM节点
+                  let result = ''
+                  // 2. 解码
+                  let decode = he.unescape(str, {
+                      strict: true
+                  })
+                  HTMLParser(decode, {
+                      start (tag, attrs, unary) {
+                          // 3. 过滤常见危险的标签
+                          if (tag === 'script' || tag === 'img' || tag === 'link' || tag === 'style' || tag === 'iframe' || tag === 'frame') return
+                          result += `<${tag}`
+                          for (let i = 0; i < attrs.length; i++) {
+                              let name = (attrs[i].name).toLowerCase()
+                              let value = attrs[i].escaped
+                              // 3. 过滤掉危险的style属性和js事件
+                              if (name === 'style' || name === 'href' || name === 'src' || ~name.indexOf('on')) continue
+                              result += ` ${name}=${value}`
+                          }
+                          result += `${unary ? ' /' : ''} >`
+                      },
+                      chars (text) {
+                          result += text
+                      },
+                      comment (text) {
+                          result += `<!-- ${text} -->`
+                      },
+                      end (tag) {
+                          result += `</${tag}>`
+                      }
+                  })
+                  return result
+              }
+
+    5.总结
+        (1)一旦在DOM解析过程成出现不在预期内的改变（JS代码执行或样式大量变化时），就可能发生XSS攻击
+        (2)XSS分为反射型XSS，存储型XSS和DOM XSS
+        (3)反射型XSS是在将XSS代码放在URL中，将参数提交到服务器。服务器解析后响应，在响应结果中存在XSS代码，最终通过浏览器解析执行。
+        (4)存储型XSS是将XSS代码存储到服务端（数据库、内存、文件系统等），在下次请求同一个页面时就不需要带上XSS代码了，而是从服务器读取。
+        (5)DOM XSS的发生主要是在JS中使用eval造成的，所以应当避免使用eval语句。
+        (6)XSS危害有盗取用户cookie，通过JS或CSS改变样式，DDos造成正常用户无法得到服务器响应。
+        (7)XSS代码的预防主要通过对数据解码，再过滤掉危险标签、属性和事件等。
