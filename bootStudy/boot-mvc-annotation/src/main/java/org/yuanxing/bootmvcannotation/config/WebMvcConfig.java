@@ -4,15 +4,20 @@ import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.alibaba.fastjson.support.config.FastJsonConfig;
 import com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.format.FormatterRegistry;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
+import org.springframework.web.filter.CharacterEncodingFilter;
+import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.yuanxing.bootmvcannotation.converter.EmployeeConverter;
 import org.yuanxing.bootmvcannotation.converter.StringToDateConverter;
 import org.yuanxing.bootmvcannotation.formatter.DatesFormatter;
+import org.yuanxing.bootmvcannotation.interceptor.MyWebRequestInterceptor;
+import org.yuanxing.bootmvcannotation.interceptor.RootInterceptor;
 
 import java.nio.charset.Charset;
 import java.util.ArrayList;
@@ -29,6 +34,8 @@ import java.util.List;
  */
 
 //@Configuration
+//@Slf4j
+//@ServletComponentScan("org.yuanxing.bootmvcannotation.filter")
 public class WebMvcConfig implements WebMvcConfigurer {
 
 
@@ -45,6 +52,15 @@ public class WebMvcConfig implements WebMvcConfigurer {
         return new DatesFormatter("yyyy-MM-dd HH:mm:ss");
     }
 
+    @Bean
+    public FilterRegistrationBean filterRegistrationBean() {
+        FilterRegistrationBean registrationBean = new FilterRegistrationBean();
+        CharacterEncodingFilter characterEncodingFilter = new CharacterEncodingFilter();
+        characterEncodingFilter.setForceEncoding(true);
+        characterEncodingFilter.setEncoding("utf-8");
+        registrationBean.setFilter(characterEncodingFilter);
+        return registrationBean;
+    }
 
 
     /**
@@ -83,7 +99,6 @@ public class WebMvcConfig implements WebMvcConfigurer {
         }
     }
 
-
     /**
      *
      * @param registry
@@ -98,9 +113,23 @@ public class WebMvcConfig implements WebMvcConfigurer {
     }
 
     /**
-     * @param
-     * @see 配置自定义拦截器
+     *
+     * @param registry
+     * @see (1) 添加自定义拦截器
      */
+    public void addInterceptors(InterceptorRegistry registry) {
+        //添加一个 HandlerInterceptor
+        registry.addInterceptor(new RootInterceptor())
+                .addPathPatterns("/**")
+                .excludePathPatterns("")
+                .order(5);
+
+        //添加一个 WebRequestInterceptor
+        registry.addWebRequestInterceptor(new MyWebRequestInterceptor())
+                .addPathPatterns("/**")
+                .excludePathPatterns("")
+                .order(0);
+    }
 
 
 }

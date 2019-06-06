@@ -1,10 +1,8 @@
 package org.yuanxing.bootmvcannotation.config;
 
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.format.FormatterRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.yuanxing.bootmvcannotation.converter.EmployeeConverter;
@@ -19,8 +17,8 @@ import org.yuanxing.bootmvcannotation.util.ContextUtil;
  */
 
 //@EnableWebMvc
-@Configuration //测试时开启
-@Slf4j
+//@Configuration //测试时开启
+//@Slf4j
 public class TypeConversionConfig implements WebMvcConfigurer {
 
     @Autowired
