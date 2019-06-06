@@ -3,10 +3,16 @@ package org.yuanxing.bootmvcannotation.config;
 import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.alibaba.fastjson.support.config.FastJsonConfig;
 import com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
+import org.springframework.format.FormatterRegistry;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import org.yuanxing.bootmvcannotation.converter.EmployeeConverter;
+import org.yuanxing.bootmvcannotation.converter.StringToDateConverter;
+import org.yuanxing.bootmvcannotation.formatter.DatesFormatter;
 
 import java.nio.charset.Charset;
 import java.util.ArrayList;
@@ -24,6 +30,21 @@ import java.util.List;
 
 //@Configuration
 public class WebMvcConfig implements WebMvcConfigurer {
+
+
+    @Autowired
+    private EmployeeConverter employeeConverter;
+
+    @Bean(name="stringToDataConverter")
+    public StringToDateConverter converter() {
+        return new StringToDateConverter("yyyy-MM-dd HH:mm:ss");
+    }
+
+    @Bean(name="dateFormatter")
+    public DatesFormatter formatter() {
+        return new DatesFormatter("yyyy-MM-dd HH:mm:ss");
+    }
+
 
 
     /**
@@ -61,6 +82,25 @@ public class WebMvcConfig implements WebMvcConfigurer {
             }
         }
     }
+
+
+    /**
+     *
+     * @param registry
+     * @see (1) 配置自定义的转换器和格式化器
+     */
+    @Override
+    public void addFormatters(FormatterRegistry registry) {
+        registry.addConverter(converter());
+        registry.addFormatter(formatter());
+        registry.addConverter(employeeConverter);
+
+    }
+
+    /**
+     * @param
+     * @see 配置自定义拦截器
+     */
 
 
 }

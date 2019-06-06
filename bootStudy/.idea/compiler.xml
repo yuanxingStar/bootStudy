@@ -11,6 +11,7 @@
         <module name="boot-druid" />
         <module name="boot-first" />
         <module name="boot-h2" />
+        <module name="boot-ioc-bean" />
         <module name="boot-mvc" />
         <module name="boot-mvc-annotation" />
         <module name="boot-mybatis" />
