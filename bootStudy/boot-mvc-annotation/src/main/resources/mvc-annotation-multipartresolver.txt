@@ -1,0 +1,279 @@
+2019.6.11
+    1.  MultipartResolver
+        MultipartResolver 用于处理文件上传，当收到请求时 DispatcherServlet 的 checkMultipart() 方法会调用 MultipartResolver 的 isMultipart() 方法判断请求中是否包含文件。
+        如果请求数据中包含文件，则调用 MultipartResolver 的 resolveMultipart() 方法对请求的数据进行解析，然后将文件数据解析成 MultipartFile 并封装在 MultipartHttpServletRequest
+        (继承了 HttpServletRequest) 对象中，最后传递给 Controller
+
+    2.  MultipartResolver 接口中有如下方法:
+            boolean isMultipart(HttpServletRequest request); // 是否是 multipart
+            MultipartHttpServletRequest resolveMultipart(HttpServletRequest request); // 解析请求
+            void cleanupMultipart(MultipartHttpServletRequest request);
+
+        MultipartFile 封装了请求数据中的文件，此时这个文件存储在内存中或临时的磁盘文件中，需要将其转存到一个合适的位置，因为请求结束后临时存储将被清空。
+        在 MultipartFile 接口中有如下方法：
+            String getName(); // 获取参数的名称
+            String getOriginalFilename(); // 获取文件的原名称
+            String getContentType(); // 文件内容的类型
+            boolean isEmpty(); // 文件是否为空
+            long getSize(); // 文件大小
+            byte[] getBytes(); // 将文件内容以字节数组的形式返回
+            InputStream getInputStream(); // 将文件内容以输入流的形式返回
+            void transferTo(File dest); // 将文件内容传输到指定文件中
+
+    3.MultipartResolver 实现类：
+        CommonsMultipartResolver：
+            使用 commons Fileupload 来处理 multipart 请求，所以在使用时，必须要引入相应的 jar 包 (commons-fileupload:1.2.2)
+        StandardServletMultipartResolver：
+            而 StandardServletMultipartResolver 是基于 Servlet 3.0来处理 multipart 请求的，所以不需要引用其他 jar 包，但是必须使用支持 Servlet 3.0的容器才可以，以tomcat为例，
+            从 Tomcat 7.0.x的版本开始就支持 Servlet 3.0了
+
+
+    4.CommonsMultipartResolver  xml配置文件方式使用：
+        <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+            <!-- 设定默认编码 -->
+            <property name="defaultEncoding" value="UTF-8"></property>
+            <!-- 设定文件上传的最大值为5MB，5*1024*1024 -->
+            <property name="maxUploadSize" value="5242880"></property>
+            <!-- 设定文件上传时写入内存的最大值，如果小于这个参数不会生成临时文件，默认为10240 -->
+            <property name="maxInMemorySize" value="40960"></property>
+            <!-- 上传文件的临时路径 -->
+            <property name="uploadTempDir" value="fileUpload/temp"></property>
+            <!-- 延迟文件解析 -->
+            <property name="resolveLazily" value="true"/>
+        </bean>
+        <form action="${pageContext.request.contextPath}/test/file-upload.do" method="post" enctype="multipart/form-data">
+             <input type="file" name="file">
+             <input type="submit" value="提交">
+        </form>
+        @RequestMapping("/file-upload")
+        public ModelAndView upload(@RequestParam(value = "file", required = false) MultipartFile file,
+        　　　　　　HttpServletRequest request, HttpSession session) {
+            // 文件不为空
+            if(!file.isEmpty()) {
+                // 文件存放路径
+                String path = request.getServletContext().getRealPath("/");
+                // 文件名称
+                String name = String.valueOf(new Date().getTime()+"_"+file.getOriginalFilename());
+                File destFile = new File(path,name);
+                // 转存文件
+                try {
+                    file.transferTo(destFile);
+                } catch (IllegalStateException | IOException e) {
+                    e.printStackTrace();
+                }
+                // 访问的url
+                String url = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
+        　　　　　　+ request.getContextPath() + "/" + name;
+            }
+            ModelAndView mv = new ModelAndView();
+            mv.setViewName("other/home");
+            return mv;
+        }
+
+    5.CommonsMultipartResolver 源码分析
+        CommonsMultipartResolver 实现了 MultipartResolver 接口，resolveMultipart() 方法如下所示，其中 resolveLazily 是判断是否要延迟解析文件（通过XML可以设置）。
+        当 resolveLazily 为 flase 时，会立即调用 parseRequest() 方法对请求数据进行解析，然后将解析结果封装到 DefaultMultipartHttpServletRequest 中；而当 resolveLazily 为 true 时，
+        会在 DefaultMultipartHttpServletRequest 的 initializeMultipart() 方法调用 parseRequest() 方法对请求数据进行解析，而 initializeMultipart() 方法又是被 getMultipartFiles() 方法调用，
+        即当需要获取文件信息时才会去解析请求数据，这种方式用了懒加载的思想。
+        @Override
+        public MultipartHttpServletRequest resolveMultipart(final HttpServletRequest request) throws MultipartException {
+            Assert.notNull(request, "Request must not be null");
+            if (this.resolveLazily) {
+                //懒加载，当调用DefaultMultipartHttpServletRequest的getMultipartFiles()方法时才解析请求数据
+                return new DefaultMultipartHttpServletRequest(request) {
+                    @Override //当getMultipartFiles()方法被调用时，如果还未解析请求数据，则调用initializeMultipart()方法进行解析 protected void initializeMultipart() {
+                        MultipartParsingResult parsingResult = parseRequest(request);
+                        setMultipartFiles(parsingResult.getMultipartFiles());
+                        setMultipartParameters(parsingResult.getMultipartParameters());
+                        setMultipartParameterContentTypes(parsingResult.getMultipartParameterContentTypes());
+                    }
+                };
+            } else {
+                //立即解析请求数据，并将解析结果封装到DefaultMultipartHttpServletRequest对象中
+                MultipartParsingResult parsingResult = parseRequest(request);
+                return new DefaultMultipartHttpServletRequest(request, parsingResult.getMultipartFiles(),
+                      parsingResult.getMultipartParameters(), parsingResult.getMultipartParameterContentTypes());
+            }
+        }
+        protected MultipartParsingResult parseRequest(HttpServletRequest request) throws MultipartException {
+            // 获取请求的编码类型
+            String encoding = determineEncoding(request);
+            FileUpload fileUpload = prepareFileUpload(encoding);
+            try {
+                List<FileItem> fileItems = ((ServletFileUpload) fileUpload).parseRequest(request);
+                return parseFileItems(fileItems, encoding);
+            } catch (...) {}
+        }
+        在 parseRequest() 方法中，首先调用了 prepareFileUpload() 方法来根据编码类型确定一个 FileUpload 实例，然后利用这个 FileUpload 实例解析请求数据后得到文件信息，最后将文件信息解析成 CommonsMultipartFile
+        (实现了 MultipartFile 接口) 并包装在 MultipartParsingResult 对象中。
+
+    6.  StandardServletMultipartResolver
+            <bean id="multipartResolver" class="org.springframework.web.multipart.support.StandardServletMultipartResolver">
+            </bean>
+            <servlet>
+                <servlet-name>springmvc</servlet-name>
+                <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+                <init-param>
+                    <param-name>contextConfigLocation</param-name>
+                    <param-value>classpath:springmvc.xml</param-value>
+                </init-param>
+                <load-on-startup>1</load-on-startup>
+                <multipart-config>
+                    <!-- 临时文件的目录 -->
+                    <location>d:/</location>
+                    <!-- 上传文件最大2M -->
+                    <max-file-size>2097152</max-file-size>
+                    <!-- 上传文件整个请求不超过4M -->
+                    <max-request-size>4194304</max-request-size>
+                </multipart-config>
+            </servlet>
+        通过 MultipartFile 类型的参数
+            @RequestMapping("/file-upload")
+            public ModelAndView upload(@RequestParam(value = "file", required = false) MultipartFile file,
+            　　　　　　HttpServletRequest request, HttpSession session) {
+                // 文件不为空
+                if(!file.isEmpty()) {
+                    // 文件存放路径
+                    String path = request.getServletContext().getRealPath("/");
+                    // 文件名称
+                    String name = String.valueOf(new Date().getTime()+"_"+file.getOriginalFilename());
+                    File destFile = new File(path,name);
+                    // 转存文件
+                    try {
+                        file.transferTo(destFile);
+                    } catch (IllegalStateException | IOException e) {
+                        e.printStackTrace();
+                    }
+                    // 访问的url
+                    String url = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
+            　　　　　　+ request.getContextPath() + "/" + name;
+                }
+                ModelAndView mv = new ModelAndView();
+                mv.setViewName("other/home");
+                return mv;
+            }
+        通过 MultipartHttpServletRequest 类型的参数
+            @RequestMapping("/file-upload")
+            public ModelAndView upload(MultipartHttpServletRequest request, HttpSession session) {
+                // 根据页面input标签的name
+                MultipartFile file = request.getFile("file");
+                // 文件不为空
+                if(!file.isEmpty()) {
+                    // 文件存放路径
+                    String path = request.getServletContext().getRealPath("/");
+                    // 文件名称
+                    String name = String.valueOf(new Date().getTime()+"_"+file.getOriginalFilename());
+                    File destFile = new File(path,name);
+                    // 转存文件
+                    try {
+                        file.transferTo(destFile);
+                    } catch (IllegalStateException | IOException e) {
+                        e.printStackTrace();
+                    }
+                    // 访问的url
+                    String url = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
+            　　　　　　+ request.getContextPath() + "/" + name;
+                }
+                ModelAndView mv = new ModelAndView();
+                mv.setViewName("other/home");
+                return mv;
+            }
+
+    7.StandardServletMultipartResolver 源码分析
+        StandardServletMultipartResolver 实现了 MultipartResolver 接口，resolveMultipart() 方法如下所示，其中 resolveLazily 是判断是否要延迟解析文件（通过XML可以设置）。
+        public MultipartHttpServletRequest resolveMultipart(HttpServletRequest request) throws MultipartException {
+            return new StandardMultipartHttpServletRequest(request, this.resolveLazily);
+        }
+        public StandardMultipartHttpServletRequest(HttpServletRequest request, boolean lazyParsing) throws MultipartException {
+            super(request);
+            // 判断是否立即解析
+            if (!lazyParsing) {
+                parseRequest(request);
+            }
+        }
+        对请求数据的解析工作是在 parseRequest() 方法中进行的，继续看一下 parseRequest() 方法源码
+        private void parseRequest(HttpServletRequest request) {
+            try {
+                Collection<Part> parts = request.getParts();
+                this.multipartParameterNames = new LinkedHashSet<String>(parts.size());
+                MultiValueMap<String, MultipartFile> files = new LinkedMultiValueMap<String, MultipartFile>(parts.size());
+                for (Part part : parts) {
+                    String disposition = part.getHeader(CONTENT_DISPOSITION);
+                    String filename = extractFilename(disposition);
+                    if (filename == null) {
+                        filename = extractFilenameWithCharset(disposition);
+                    }
+                    if (filename != null) {
+                        files.add(part.getName(), new StandardMultipartFile(part, filename));
+                    } else {
+                        this.multipartParameterNames.add(part.getName());
+                    }
+                }
+                setMultipartFiles(files);
+            } catch (Throwable ex) {}
+        }
+        parseRequest() 方法利用了 servlet3.0 的 request.getParts() 方法获取上传文件，并将其封装到 MultipartFile 对象中。
+
+
+    8. Springboot 默认配置：
+        8.1Spring boot 默认使用 StandardServletMultipartResolver 解析 multipart
+        @Configuration
+        @ConditionalOnClass({ Servlet.class, StandardServletMultipartResolver.class,
+                MultipartConfigElement.class })
+        @ConditionalOnProperty(prefix = "spring.servlet.multipart", name = "enabled", matchIfMissing = true)
+        @ConditionalOnWebApplication(type = Type.SERVLET)
+        @EnableConfigurationProperties(MultipartProperties.class)
+        public class MultipartAutoConfiguration {
+            private final MultipartProperties multipartProperties;
+            public MultipartAutoConfiguration(MultipartProperties multipartProperties) {
+                this.multipartProperties = multipartProperties;
+            }
+            @Bean
+            @ConditionalOnMissingBean({ MultipartConfigElement.class,
+                    CommonsMultipartResolver.class })
+            public MultipartConfigElement multipartConfigElement() {
+                return this.multipartProperties.createMultipartConfig();
+            }
+            @Bean(name = DispatcherServlet.MULTIPART_RESOLVER_BEAN_NAME)
+            @ConditionalOnMissingBean(MultipartResolver.class)
+            public StandardServletMultipartResolver multipartResolver() {
+                StandardServletMultipartResolver multipartResolver = new StandardServletMultipartResolver();
+                multipartResolver.setResolveLazily(this.multipartProperties.isResolveLazily());
+                return multipartResolver;
+            }
+        }
+
+        8.2 spring:
+                autoconfigure:
+                    exclude: org.springframework.boot.autoconfigure.web.servlet.MultipartAutoConfiguration
+            添加 CommonsMultipartResolver 的依赖
+            <!--文件上传-->
+                <dependency>
+                   <groupId>commons-fileupload</groupId>
+                   <artifactId>commons-fileupload</artifactId>
+                   <version>1.4</version>
+                </dependency>
+
+        8.3 application.properties
+            spring.servlet.multipart.enabled=       //是否开启multipartResolver
+            spring.servlet.multipart.file-size-threshold=       //文件大小阈值，当大于这个阈值时将写入到磁盘，否则存在内存中，（默认值0 一般情况下不用特意修改）
+            spring.servlet.multipart.location=          //上传文件的临时目录 （一般情况下不用特意修改）
+            spring.servlet.multipart.max-file-size=     //单个文件大小
+            spring.servlet.multipart.max-request-size=  //设置单次请求文件的总大小
+            spring.servlet.multipart.resolve-lazily=    //延迟文件解析（相当于懒加载，一般情况下不用特意修改）
+
+
+    9.  springboot 配置
+        显示声明CommonsMultipartResolver为mutipartResolver
+            @Bean(name = "multipartResolver")
+            public MultipartResolver multipartResolver(){
+                CommonsMultipartResolver resolver = new CommonsMultipartResolver();
+                resolver.setDefaultEncoding("UTF-8");
+                resolver.setResolveLazily(true);//resolveLazily属性启用是为了推迟文件解析，以在在UploadAction中捕获文件大小异常
+                resolver.setMaxInMemorySize(40960);
+                resolver.setMaxUploadSize(50*1024*1024);//上传文件大小 50M 50*1024*1024
+                return resolver;
+            }
+
+    10. spring-boot上传文件MultiPartFile获取不到文件问题解决：
+        (1)
