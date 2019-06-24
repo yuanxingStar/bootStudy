@@ -1,0 +1,72 @@
+2019.6.10   @ComponentScan
+    1.  @ComponentScan注解是什么
+        @ComponentScan主要就是定义扫描的路径从中找出标识了需要装配的类自动装配到spring的bean容器中
+    2.  @ComponentScan注解的详细使用
+        @Controller，@Service，@Repository注解，查看源码得知底层都是标注了@Component注解，@ComponentScan注解默认就会装配标识了@Controller，@Service，@Repository，@Component注解的类到spring容器中
+    3.  源码分析
+        @Retention(RetentionPolicy.RUNTIME)
+        @Target(ElementType.TYPE)
+        @Documented
+        @Repeatable(ComponentScans.class)
+        public @interface ComponentScan {
+            /**
+             * 对应的包扫描路径 可以是单个路径，也可以是扫描的路径数组
+             */
+            @AliasFor("basePackages")
+            String[] value() default {};
+            /**
+             * 和value一样是对应的包扫描路径 可以是单个路径，也可以是扫描的路径数组
+             */
+            @AliasFor("value")
+            String[] basePackages() default {};
+            /**
+             * 指定具体的扫描的类
+             */
+            Class<?>[] basePackageClasses() default {};
+            /**
+             * 对应的bean名称的生成器 默认的是BeanNameGenerator
+             */
+            Class<? extends BeanNameGenerator> nameGenerator() default BeanNameGenerator.class;
+            /**
+             * 处理检测到的bean的scope范围
+             */
+            Class<? extends ScopeMetadataResolver> scopeResolver() default AnnotationScopeMetadataResolver.class;
+            /**
+             * 是否为检测到的组件生成代理
+             * Indicates whether proxies should be generated for detected components, which may be
+             * necessary when using scopes in a proxy-style fashion.
+             * <p>The default is defer to the default behavior of the component scanner used to
+             * execute the actual scan.
+             * <p>Note that setting this attribute overrides any value set for {@link #scopeResolver}.
+             * @see ClassPathBeanDefinitionScanner#setScopedProxyMode(ScopedProxyMode)
+             */
+            ScopedProxyMode scopedProxy() default ScopedProxyMode.DEFAULT;
+            /**
+             * 控制符合组件检测条件的类文件   默认是包扫描下的  **/*.class
+             */
+            String resourcePattern() default ClassPathScanningCandidateComponentProvider.DEFAULT_RESOURCE_PATTERN;
+            /**
+             * 是否对带有@Component @Repository @Service @Controller注解的类开启检测,默认是开启的
+             */
+            boolean useDefaultFilters() default true;
+            /**
+             * 指定某些定义Filter满足条件的组件 FilterType有5种类型如：
+             *                                  ANNOTATION, 注解类型 默认
+                                                ASSIGNABLE_TYPE,指定固定类
+                                                ASPECTJ， ASPECTJ类型
+                                                REGEX,正则表达式
+                                                CUSTOM,自定义类型
+             */
+            Filter[] includeFilters() default {};
+            /**
+             * 排除某些过来器扫描到的类
+             * @return
+             */
+            Filter[] excludeFilters() default {};
+            /**
+             * 扫描到的类是都开启懒加载 ，默认是不开启的
+             * @return
+             */
+            boolean lazyInit() default false;
+        }
+    4.  includeFilters，excludeFilters

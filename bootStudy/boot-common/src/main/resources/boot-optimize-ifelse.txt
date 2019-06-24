@@ -1,0 +1,431 @@
+2019.6.12  java if-else语句优化
+    1.  避免if-else语句
+        策略模式(Policy)：
+            定义一系列的算法,把每一个算法封装起来,并且使它们可相互替换。本模式使得算法可独立于使用它的客户而变化。也称为政策模式(Policy)。
+            （Definea family of algorithms,encapsulate each one, andmake them interchangeable.
+            Strategy lets the algorithmvary independently from clients that use it.）
+        UML-Unified Modeling Language 统一建模语言，又称标准建模语言
+
+        策略模式由以下角色构成：
+            抽象策略角色： 策略类，通常由一个接口或者抽象类实现。
+            具体策略角色：包装了相关的算法和行为。
+            环境角色：持有一个策略类的引用，最终给客户端调用。
+
+        策略模式让算法独立于使用它的客户而独立变化。策略模式重点是封装不同的算法和行为，不同的场景下可以相互替换。策略模式是开闭原则的体现，
+        开闭原则讲的是一个软件实体应该对扩展开放对修改关闭。策略模式在新的策略增加时，不会影响其他类的修改，增加了扩展性，也就是对扩展是开放的；
+        对于场景来说，只依赖于抽象，而不依赖于具体实现，所以对修改是关闭的。策略模式的认识可以借助《java与模式》一书中写到诸葛亮的锦囊妙计来学习，
+        在不同的场景下赵云打开不同的锦囊，便化险为夷，锦囊便是抽象策略，具体的锦囊里面的计策便是具体的策略角色，场景就是赵云，变化的处境选择具体策略的条件。
+
+        Strategy模式有下面的一些优点：
+        相关算法系列 Strategy类层次为Context定义了一系列的可供重用的算法或行为。 继承有助于析取出这些算法中的公共功能。
+        提供了可以替换继承关系的办法： 继承提供了另一种支持多种算法或行为的方法。你可以直接生成一个Context类的子类，从而给它以不同的行为。
+        但这会将行为硬行编制到 Context中，而将算法的实现与Context的实现混合起来,从而使Context难以理解、难以维护和难以扩展，而且还不能动态地改变算法。
+        最后你得到一堆相关的类 , 它们之间的唯一差别是它们所使用的算法或行为。 将算法封装在独立的Strategy类中使得你可以独立于其Context改变它，使它易于切换、易于理解、易于扩展。
+        消除了一些if else条件语句 ：Strategy模式提供了用条件语句选择所需的行为以外的另一种选择。当不同的行为堆砌在一个类中时 ,很难避免使用条件语句来选择合适的行为。
+        将行为封装在一个个独立的Strategy类中消除了这些条件语句。含有许多条件语句的代码通常意味着需要使用Strategy模式。
+        实现的选择 Strategy模式可以提供相同行为的不同实现。客户可以根据不同时间 /空间权衡取舍要求从不同策略中进行选择。
+
+        Strategy模式缺点:
+        1)客户端必须知道所有的策略类，并自行决定使用哪一个策略类:  本模式有一个潜在的缺点，就是一个客户要选择一个合适的Strategy就必须知道这些Strategy到底有何不同。
+        此时可能不得不向客户暴露具体的实现问题。因此仅当这些不同行为变体与客户相关的行为时 , 才需要使用Strategy模式。
+        2 ) Strategy和Context之间的通信开销 ：无论各个ConcreteStrategy实现的算法是简单还是复杂, 它们都共享Strategy定义的接口。
+        因此很可能某些 ConcreteStrategy不会都用到所有通过这个接口传递给它们的信息；简单的 ConcreteStrategy可能不使用其中的任何信息！
+        这就意味着有时Context会创建和初始化一些永远不会用到的参数。如果存在这样问题 , 那么将需要在Strategy和Context之间更进行紧密的耦合。
+        3 )策略模式将造成产生很多策略类：可以通过使用享元模式在一定程度上减少对象的数量。 增加了对象的数目 Strategy增加了一个应用中的对象的数目。
+        有时你可以将 Strategy实现为可供各Context共享的无状态的对象来减少这一开销。任何其余的状态都由 Context维护。
+        Context在每一次对Strategy对象的请求中都将这个状态传递过去。共享的 Strategy不应在各次调用之间维护状态。
+        策略模式在实际工作中也很常用，在博客你还在用if-else吗有过很好的阐述，策略模式不仅是继承的代替方案，还能很好地解决if-else问题。
+
+        下面结合本文之前的例子来说明一下如何使用策略模式：
+        (1)创建抽象策略角色Strategy：
+        public interface Strategy {
+            public Double calRecharge(Double charge ,RechargeTypeEnum type );
+        }
+        (2)分别实现Strategy即具体策略角色：
+        public class EBankStrategy implements Strategy{
+            @Override
+            public Double calRecharge(Double charge, RechargeTypeEnum type) {
+               return charge*0.85;
+            }
+        public class BusiAcctStrategy implements Strategy{
+            @Override
+            public Double calRecharge(Double charge, RechargeTypeEnum type) {
+               return charge*0.90;
+            }
+        }
+        public class MobileStrategy implements Strategy {
+            @Override
+            public Double calRecharge(Double charge, RechargeTypeEnum type) {
+               return charge;
+            }
+        }
+        public class CardStrategy implements Strategy{
+            @Override
+            public Double calRecharge(Double charge, RechargeTypeEnum type) {
+               return charge+charge*0.01;
+            }
+         }
+        (3)创建环境角色Context:
+            public class Context {
+                private Strategy strategy;
+                public Double calRecharge(Double charge, Integer type) {
+                   strategy = StrategyFactory.getInstance().creator(type);
+                   return strategy.calRecharge(charge, RechargeTypeEnum.valueOf(type));
+                }
+                public Strategy getStrategy() {
+                   return strategy;
+                }
+                public void setStrategy(Strategy strategy) {
+                   this.strategy = strategy;
+                }
+            }
+        (4)StrategyFactory工厂,负责Strategy实例的创建：
+            public class StrategyFactory {
+                private static StrategyFactory factory = new StrategyFactory();
+                private StrategyFactory(){
+                }
+                private static Map strategyMap = new HashMap<>();
+                static{
+                    strategyMap.put(RechargeTypeEnum.E_BANK.value(), new EBankStrategy());
+                    strategyMap.put(RechargeTypeEnum.BUSI_ACCOUNTS.value(), new BusiAcctStrategy());
+                    strategyMap.put(RechargeTypeEnum.MOBILE.value(), new MobileStrategy());
+                    strategyMap.put(RechargeTypeEnum.CARD_RECHARGE.value(), new CardStrategy());
+                }
+                public Strategy creator(Integer type){
+                    return strategyMap.get(type);
+                }
+                public static StrategyFactory getInstance(){
+                    return factory;
+                }
+            }
+        (5)public class Client {
+            public static void main(String[] args) {
+                Context context = new Context();
+                // 网银充值100 需要付多少
+                Double money = context.calRecharge(100D,
+                      RechargeTypeEnum.E_BANK.value());
+                System.out.println(money);
+                // 商户账户充值100 需要付多少
+                Double money2 = context.calRecharge(100D,
+                      RechargeTypeEnum.BUSI_ACCOUNTS.value());
+                System.out.println(money2);
+                // 手机充值100 需要付多少
+                Double money3 = context.calRecharge(100D,
+                      RechargeTypeEnum.MOBILE.value());
+                System.out.println(money3);
+                // 充值卡充值100 需要付多少
+                Double money4 = context.calRecharge(100D,
+                      RechargeTypeEnum.CARD_RECHARGE.value());
+                System.out.println(money4);
+               }
+           }
+        策略模式把具体的算法封装到了具体策略角色内部，增强了可扩展性，隐蔽了实现细节；它替代继承来实现，避免了if- else这种不易维护的条件语句。
+        当然我们也可以看到，策略模式由于独立策略实现，使得系统内增加了很多策略类；对客户端来说必须知道兜友哪些具体策略， 而且需要知道选择具体策略的条件。
+
+        优点：
+        (1)相关算法系列 Strategy类层次为Context定义了一系列的可供重用的算法或行为。 继承有助于析取出这些算法中的公共功能。
+        (2)提供了可以替换继承关系的办法： 继承提供了另一种支持多种算法或行为的方法。你可以直接生成一个Context类的子类，从而给它以不同的行为。
+        但这会将行为硬行编制到 Context中，而将算法的实现与Context的实现混合起来,从而使Context难以理解、难以维护和难以扩展，而且还不能动态地改变算法。
+        最后你得到一堆相关的类 , 它们之间的唯一差别是它们所使用的算法或行为。 将算法封装在独立的Strategy类中使得你可以独立于其Context改变它，使它易于切换、易于理解、易于扩展。
+        (3)消除了一些if else条件语句 ：Strategy模式提供了用条件语句选择所需的行为以外的另一种选择。当不同的行为堆砌在一个类中时 ,很难避免使用条件语句来选择合适的行为。
+        将行为封装在一个个独立的Strategy类中消除了这些条件语句。含有许多条件语句的代码通常意味着需要使用Strategy模式。
+        (4)实现的选择 Strategy模式可以提供相同行为的不同实现。客户可以根据不同时间 /空间权衡取舍要求从不同策略中进行选择。
+
+        缺点：
+        (1)客户端必须知道所有的策略类，并自行决定使用哪一个策略类:  本模式有一个潜在的缺点，就是一个客户要选择一个合适的Strategy就必须知道这些Strategy到底有何不同。
+        此时可能不得不向客户暴露具体的实现问题。因此仅当这些不同行为变体与客户相关的行为时 , 才需要使用Strategy模式。
+        (2)Strategy和Context之间的通信开销 ：无论各个ConcreteStrategy实现的算法是简单还是复杂, 它们都共享Strategy定义的接口。
+        因此很可能某些 ConcreteStrategy不会都用到所有通过这个接口传递给它们的信息；简单的 ConcreteStrategy可能不使用其中的任何信息！
+        这就意味着有时Context会创建和初始化一些永远不会用到的参数。如果存在这样问题 , 那么将需要在Strategy和Context之间更进行紧密的耦合。
+        (3)策略模式将造成产生很多策略类：可以通过使用享元模式在一定程度上减少对象的数量。 增加了对象的数目 Strategy增加了一个应用中的对象的数目。
+        有时你可以将 Strategy实现为可供各Context共享的无状态的对象来减少这一开销。任何其余的状态都由 Context维护。Context在每一次对Strategy对象的请求中都将这个状态传递过去。共享的 Strategy不应在各次调用之间维护状态。
+
+    2.  使用枚举
+        public enum Status {
+            NEW(0),RUNNABLE(1),RUNNING(2),BLOCKED(3),DEAD(4);
+            public int statusCode;
+            Status(int statusCode){
+                this.statusCode = statusCode;
+            }
+        }
+        使用的时候就可以直接通过枚举调用了。
+        int statusCode = Status.valueOf(“NEW”).statusCode;
+
+    3.  Optional  类
+        从 Java 8 引入的一个很有趣的特性是 Optional类。Optional 类主要解决的问题是臭名昭著的空指针异常（NullPointerException）
+        3.1 创建Optional 实例:
+            (1)个类型的对象可能包含值，也可能为空。你可以使用同名方法创建一个空的 Optional。
+            @Test(expected = NoSuchElementException.class)
+            public void whenCreateEmptyOptional_thenNull() {
+                Optional<User> emptyOpt = Optional.empty();
+                emptyOpt.get();
+            }
+            尝试访问 emptyOpt 变量的值会导致 NoSuchElementException。
+            (2)使用of() 和 ofNullable() 方法创建包含值的 Optional。两个方法的不同之处在于如果你把 null 值作为参数传递进去，of() 方法会抛出 NullPointerException：
+            @Test(expected = NullPointerException.class)
+            public void whenCreateOfEmptyOptional_thenNullPointerException() {
+                Optional<User> opt = Optional.of(user);
+            }
+            明确对象不为 null  的时候使用 of()。如果对象即可能是 null 也可能是非 null，你就应该使用 ofNullable() 方法
+            Optional<User> opt = Optional.ofNullable(user);
+        3.2 访问 Optional 对象的值:
+            从 Optional 实例中取回实际值对象的方法之一是使用 get()
+            @Test
+            public void whenCreateOfNullableOptional_thenOk() {
+                String name = "John";
+                Optional<String> opt = Optional.ofNullable(name);
+                assertEquals("John", opt.get());
+            }
+            这个方法会在值为 null 的时候抛出异常。要避免异常，你可以选择首先验证是否有值:
+            @Test
+            public void whenCheckIfPresent_thenOk() {
+                User user = new User("john@gmail.com", "1234");
+                Optional<User> opt = Optional.ofNullable(user);
+                assertTrue(opt.isPresent());
+                assertEquals(user.getEmail(), opt.get().getEmail());
+            }
+            检查是否有值的另一个选择是 ifPresent() 方法。该方法除了执行检查，还接受一个Consumer(消费者) 参数，如果对象不是空的，就对执行传入的 Lambda 表达式:
+            opt.ifPresent( u -> assertEquals(user.getEmail(), u.getEmail()));
+        3.3 返回默认值:
+            Optional 类提供了 API 用以返回对象值，或者在对象为空的时候返回默认值。
+            orElse(),它的工作方式非常直接，如果有值则返回该值，否则返回传递给它的参数值
+            @Test
+            public void whenEmptyValue_thenReturnDefault() {
+                User user = null;
+                User user2 = new User("anna@gmail.com", "1234");
+                User result = Optional.ofNullable(user).orElse(user2);
+                assertEquals(user2.getEmail(), result.getEmail());
+            }
+            如果对象的初始值不是 null，那么默认值会被忽略
+            @Test
+            public void whenValueNotNull_thenIgnoreDefault() {
+                User user = new User("john@gmail.com","1234");
+                User user2 = new User("anna@gmail.com", "1234");
+                User result = Optional.ofNullable(user).orElse(user2);
+                assertEquals("john@gmail.com", result.getEmail());
+            }
+            第二个同类型的 API 是 orElseGet() —— 其行为略有不同。这个方法会在有值的时候返回值，如果没有值，它会执行作为参数传入的 Supplier(供应者) 函数式接口，并将返回其执行结果：
+            User result = Optional.ofNullable(user).orElseGet( () -> user2);
+
+        3.4 orElse() 和 orElseGet() 的不同之处:
+            @Test
+            public void givenEmptyValue_whenCompare_thenOk() {
+                User user = null
+                logger.debug("Using orElse");
+                User result = Optional.ofNullable(user).orElse(createNewUser());
+                logger.debug("Using orElseGet");
+                User result2 = Optional.ofNullable(user).orElseGet(() -> createNewUser());
+            }
+            private User createNewUser() {
+                logger.debug("Creating New User");
+                return new User("extra@gmail.com", "1234");
+            }
+            上面的代码中，两种方法都调用了 createNewUser() 方法，这个方法会记录一个消息并返回 User 对象。
+            代码输出如下：
+                Using orElse
+                Creating New User
+                Using orElseGet
+                Creating New User
+            由此可见，当对象为空而返回默认对象时，行为并无差异。
+            @Test
+            public void givenPresentValue_whenCompare_thenOk() {
+                User user = new User("john@gmail.com", "1234");
+                logger.info("Using orElse");
+                User result = Optional.ofNullable(user).orElse(createNewUser());
+                logger.info("Using orElseGet");
+                User result2 = Optional.ofNullable(user).orElseGet(() -> createNewUser());
+            }
+            这次的输出：
+            Using orElse
+            Creating New User
+            Using orElseGet
+            这个示例中，两个 Optional  对象都包含非空值，两个方法都会返回对应的非空值。不过，orElse() 方法仍然创建了 User 对象。与之相反，orElseGet() 方法不创建 User 对象。
+            在执行较密集的调用时，比如调用 Web 服务或数据查询，这个差异会对性能产生重大影响
+
+        3.5返回异常
+            除了 orElse() 和 orElseGet() 方法，Optional 还定义了 orElseThrow() API —— 它会在对象为空的时候抛出异常，而不是返回备选的值：
+            @Test(expected = IllegalArgumentException.class)
+            public void whenThrowException_thenOk() {
+                User result = Optional.ofNullable(user)
+                  .orElseThrow( () -> new IllegalArgumentException());
+            }
+            这里，如果 user 值为 null，会抛出 IllegalArgumentException。
+            这个方法可以决定抛出什么样的异常，而不总是抛出 NullPointerException。
+
+        3.6转换值
+            有很多种方法可以转换 Optional  的值。我们从 map() 和 flatMap() 方法开始。
+            先来看一个使用 map() API 的例子：
+            @Test
+            public void whenMap_thenOk() {
+                User user = new User("anna@gmail.com", "1234");
+                String email = Optional.ofNullable(user)
+                  .map(u -> u.getEmail()).orElse("default@gmail.com");
+                assertEquals(email, user.getEmail());
+            }
+            map() 对值应用(调用)作为参数的函数，然后将返回的值包装在 Optional 中。这就使对返回值进行链试调用的操作成为可能 —— 这里的下一环就是 orElse()。
+            相比这下，flatMap() 也需要函数作为参数，并对值调用这个函数，然后直接返回结果。
+            下面的操作中，我们给 User 类添加了一个方法，用来返回 Optional：
+            public class User {
+                private String position;
+                public Optional<String> getPosition() {
+                    return Optional.ofNullable(position);
+                }
+                //...
+            }
+            既然 getter 方法返回 String 值的 Optional，你可以在对 User 的 Optional 对象调用 flatMap() 时，用它作为参数。其返回的值是解除包装的 String 值：
+            @Test
+            public void whenFlatMap_thenOk() {
+                User user = new User("anna@gmail.com", "1234");
+                user.setPosition("Developer");
+                String position = Optional.ofNullable(user)
+                  .flatMap(u -> u.getPosition()).orElse("default");
+                assertEquals(position, user.getPosition().get());
+            }
+
+        3.7过滤值
+            除了转换值之外，Optional  类也提供了按条件“过滤”值的方法。
+            filter() 接受一个 Predicate 参数，返回测试结果为 true 的值。如果测试结果为 false，会返回一个空的 Optional。
+            来看一个根据基本的电子邮箱验证来决定接受或拒绝 User(用户) 的示例：
+            @Test
+            public void whenFilter_thenOk() {
+                User user = new User("anna@gmail.com", "1234");
+                Optional<User> result = Optional.ofNullable(user)
+                  .filter(u -> u.getEmail() != null && u.getEmail().contains("@"));
+                assertTrue(result.isPresent());
+            }
+            如果通过过滤器测试，result 对象会包含非空值。
+        3.8 Optional 类的链式方法
+            为了更充分的使用 Optional，你可以链接组合其大部分方法，因为它们都返回相同类似的对象。
+            我们使用 Optional  重写最早介绍的示例。
+            首先，重构类，使其 getter 方法返回 Optional 引用：
+            public class User {
+                private Address address;
+                public Optional<Address> getAddress() {
+                    return Optional.ofNullable(address);
+                }
+                // ...
+            }
+            public class Address {
+                private Country country;
+                public Optional<Country> getCountry() {
+                    return Optional.ofNullable(country);
+                }
+                // ...
+            }
+            上面的嵌套结构可以用下面的图来表示：
+            optional nested
+            现在可以删除 null 检查，替换为 Optional 的方法：
+            @Test
+            public void whenChaining_thenOk() {
+                User user = new User("anna@gmail.com", "1234");
+                String result = Optional.ofNullable(user)
+                  .flatMap(u -> u.getAddress())
+                  .flatMap(a -> a.getCountry())
+                  .map(c -> c.getIsocode())
+                  .orElse("default");
+                assertEquals(result, "default");
+            }
+            上面的代码可以通过方法引用进一步缩减：
+            String result = Optional.ofNullable(user)
+              .flatMap(User::getAddress)
+              .flatMap(Address::getCountry)
+              .map(Country::getIsocode)
+              .orElse("default");
+                结果现在的代码看起来比之前采用条件分支的冗长代码简洁多了。
+
+        3.9 Java 9 增强
+            我们介绍了 Java 8 的特性，Java 9 为 Optional 类添加了三个方法：or()、ifPresentOrElse() 和 stream()。
+            or() 方法与 orElse() 和 orElseGet() 类似，它们都在对象为空的时候提供了替代情况。or() 的返回值是由 Supplier 参数产生的另一个 Optional 对象。
+            如果对象包含值，则 Lambda 表达式不会执行：
+            @Test
+            public void whenEmptyOptional_thenGetValueFromOr() {
+                User result = Optional.ofNullable(user)
+                  .or( () -> Optional.of(new User("default","1234"))).get();
+                assertEquals(result.getEmail(), "default");
+            }
+            上面的示例中，如果 user 变量是 null，它会返回一个 Optional，它所包含的 User 对象，其电子邮件为 “default”。
+            ifPresentOrElse() 方法需要两个参数：一个 Consumer 和一个 Runnable。如果对象包含值，会执行 Consumer 的动作，否则运行 Runnable。
+            如果你想在有值的时候执行某个动作，或者只是跟踪是否定义了某个值，那么这个方法非常有用：
+            Optional.ofNullable(user).ifPresentOrElse( u -> logger.info("User is:" + u.getEmail()),
+              () -> logger.info("User not found"));
+            最后介绍的是新的 stream() 方法，它通过把实例转换为 Stream 对象，让你从广大的 Stream API 中受益。如果没有值，它会得到空的 Stream；有值的情况下，Stream 则会包含单一值。
+            我们来看一个把 Optional 处理成 Stream 的例子：
+            @Test
+            public void whenGetStream_thenOk() {
+                User user = new User("john@gmail.com", "1234");
+                List<String> emails = Optional.ofNullable(user)
+                  .stream()
+                  .filter(u -> u.getEmail() != null && u.getEmail().contains("@"))
+                  .map( u -> u.getEmail())
+                  .collect(Collectors.toList());
+
+                assertTrue(emails.size() == 1);
+                assertEquals(emails.get(0), user.getEmail());
+            }
+            这里对 Stream 的使用带来了其 filter()、map() 和 collect() 接口，以获取 List。
+        3.10 Optional  应该怎样用？
+            在使用 Optional 的时候需要考虑一些事情，以决定什么时候怎样使用它。
+            重要的一点是 Optional 不是 Serializable。因此，它不应该用作类的字段。
+            如果你需要序列化的对象包含 Optional 值，Jackson 库支持把 Optional 当作普通对象。也就是说，Jackson 会把空对象看作 null，而有值的对象则把其值看作对应域的值。这个功能在 jackson-modules-java8 项目中。
+            它在另一种情况下也并不怎么有用，就是在将其类型用作方法或构建方法的参数时。这样做会让代码变得复杂，完全没有必要：
+            User user = new User("john@gmail.com", "1234", Optional.empty());
+            使用重载方法来处理非要的参数要容易得多。
+            Optional 主要用作返回类型。在获取到这个类型的实例后，如果它有值，你可以取得这个值，否则可以进行一些替代行为。
+            Optional 类有一个非常有用的用例，就是将其与流或其它返回 Optional 的方法结合，以构建流畅的API。
+            我们来看一个示例，使用 Stream 返回 Optional 对象的 findFirst() 方法：
+            @Test
+            public void whenEmptyStream_thenReturnDefaultOptional() {
+                List<User> users = new ArrayList<>();
+                User user = users.stream().findFirst().orElse(new User("default", "1234"));
+
+                assertEquals(user.getEmail(), "default");
+            }
+            Optional 是 Java 语言的有益补充 —— 它旨在减少代码中的 NullPointerExceptions，虽然还不能完全消除这些异常。
+            它也是精心设计，自然融入 Java 8 函数式支持的功能。
+            总的来说，这个简单而强大的类有助于创建简单、可读性更强、比对应程序错误更少的程序。
+
+    4.表驱动法
+        int getMonthDays(int month){
+        	switch(month){
+        		case 1:return 31;break;
+        		case 2:return 29;break;
+        		case 3:return 31;break;
+        		case 4:return 30;break;
+        		case 5:return 31;break;
+        		case 6:return 30;break;
+        		case 7:return 31;break;
+        		case 8:return 31;break;
+        		case 9:return 30;break;
+        		case 10:return 31;break;
+        		case 11:return 30;break;
+        		case 12:return 31;break;
+        		default：return 0;
+        	}
+        }
+        int monthDays[12] = {31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+        int getMonthDays(int month){
+        	return monthDays[--month];
+        }
+
+        Map<?, Function<?> action> actionsMap = new HashMap<>();
+        // 初试配置对应动作
+        actionsMap.put(value1, (someParams) -> { doAction1(someParams)});
+        actionsMap.put(value2, (someParams) -> { doAction2(someParams)});
+        actionsMap.put(value3, (someParams) -> { doAction3(someParams)});
+        // 省略 null 判断
+        actionsMap.get(param).apply(someParams);
+
+    5.  提前判断返回：
+        if(condition){
+           //dost
+        }else{
+           return ;
+        }
+        if(!condition){
+           return ;
+        }
+
+
+
+
+

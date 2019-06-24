@@ -4,10 +4,10 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>org.yuanxing</groupId>
-    <artifactId>boot-mvc-annotation</artifactId>
-    <version>1.0.0</version>
-    <name>boot-mvc-annotation</name>
-    <description>mvc-annotaion project for Spring Boot</description>
+    <artifactId>boot-ioc-bean</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <name>boot-ioc-bean</name>
+    <description>ioc-bean project for Spring Boot</description>
 
     <properties>
         <java.version>1.8</java.version>
@@ -40,44 +40,11 @@
         </dependency>
 
         <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <optional>true</optional>
-        </dependency>
-
-        <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
 
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-logging</artifactId>
-            <scope>compile</scope>
-        </dependency>
-
-        <!--集成fastjson 格式转换  -->
-        <dependency>
-            <groupId>com.alibaba</groupId>
-            <artifactId>fastjson</artifactId>
-            <version>1.2.54</version>
-        </dependency>
-
-        <dependency>
-            <groupId>commons-lang</groupId>
-            <artifactId>commons-lang</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>commons-fileupload</groupId>
-            <artifactId>commons-fileupload</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-thymeleaf</artifactId>
-        </dependency>
     </dependencies>
 
     <build>

@@ -1,0 +1,50 @@
+2019.6.3
+    1.  @Bean 是一个方法级别上的注解，主要用在@Configuration注解的类里，也可以用在@Component注解的类里。添加的bean的id为方法名
+        1.1  定义bean
+             @Configuration
+             public class AppConfig {
+                 @Bean
+                 public TransferService transferService() {
+                     return new TransferServiceImpl();
+                 }
+             }
+             等同于：
+             <beans>
+                 <bean id="transferService" class="org.yuanxing.bootiocbean.TransferServiceImpl"/>
+             </beans>
+        1.2  @bean 依赖其他任意数量的bean 可以通过方法参数实现这个依赖
+             @Configuration
+             public class AppConfig {
+                 @Bean
+                 public TransferService transferService(AccountRepository accountRepository) {
+                     return new TransferServiceImpl(accountRepository);
+                 }
+
+             }
+        1.3  接受生命周期的回调
+             @Bean定义的bean，也可以执行生命周期的回调函数，类似@PostConstruct and @PreDestroy的方法。
+
+
+    2.  value -- bean别名和name是相互依赖关联的，value,name如果都使用的话值必须要一致
+        name -- bean名称，如果不写会默认为注解的方法名称
+        autowire -- 自动装配默认是不开启的，建议尽量不要开启，因为自动装配不能装配基本数据类型、字符串、数组等，这是自动装配设计的局限性，以及自动装配不如显示依赖注入精确
+        initMethod -- bean的初始化之前的执行方法，该参数一般不怎么用，因为可以完全可以在代码中实现
+        destroyMethod -- bean销毁执行的方法
+
+    3.  @Scope         ***** @SessionScope
+        @Scope bean的作用域:
+        prototype：多实例的：ioc容器启动并不会去调用方法创建对象放在容器中。每次获取的时候才会调用方法创建对象；
+        singleton：单实例的（默认值）：ioc容器启动会调用方法创建对象放到ioc容器中。以后每次获取就是直接从容器（map.get()）中拿，
+        request：同一次请求创建一个实例 request表示该针对每一次HTTP请求都会产生一个新的bean，同时该bean仅在当前HTTP request内有效
+        session：同一个session创建一个实例 session作用域表示该针对每一次HTTP请求都会产生一个新的bean，同时该bean仅在当前HTTP session内有效
+        globalsession：global session作用域类似于标准的HTTP Session作用域，不过它仅仅在基于portlet的web应用中才有意义
+
+        使用场景:
+        @Scope注解的使用场景
+        几乎90%以上的业务使用singleton单实例就可以，所以spring默认的类型也是singleton，singleton虽然保证了全局是一个实例，对性能有所提高，
+        但是如果实例中有非静态变量时，会导致线程安全问题，共享资源的竞争
+        当设置为prototype时：每次连接请求，都会生成一个bean实例，也会导致一个问题，当请求数越多，性能会降低，因为创建的实例，导致GC频繁，gc时长增加
+
+
+
+    4.  @Description 对注入的bean进行简单的描述
