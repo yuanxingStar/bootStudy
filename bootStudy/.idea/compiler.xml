@@ -8,6 +8,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="boot-common" />
+        <module name="boot-datasource" />
         <module name="boot-druid" />
         <module name="boot-first" />
         <module name="boot-h2" />

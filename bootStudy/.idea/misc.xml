@@ -13,6 +13,7 @@
         <option value="$PROJECT_DIR$/boot-mybatis/pom.xml" />
         <option value="$PROJECT_DIR$/boot-mvc-annotation/pom.xml" />
         <option value="$PROJECT_DIR$/boot-ioc-bean/pom.xml" />
+        <option value="$PROJECT_DIR$/boot-datasource/pom.xml" />
       </list>
     </option>
   </component>

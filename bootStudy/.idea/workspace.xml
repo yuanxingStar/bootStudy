@@ -2,8 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="fc86d3dd-e382-4ac0-a0e2-09a8722bb68d" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/boot-mvc-annotation/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/boot-mvc-annotation/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/boot-datasource/src/main/resources/update.txt" beforeDir="false" afterPath="$PROJECT_DIR$/boot-datasource/src/main/resources/update.txt" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -15,6 +18,7 @@
     <ignored path="$PROJECT_DIR$/boot-mybatis/target/" />
     <ignored path="$PROJECT_DIR$/boot-mvc-annotation/target/" />
     <ignored path="$PROJECT_DIR$/boot-ioc-bean/target/" />
+    <ignored path="$PROJECT_DIR$/boot-datasource/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,42 +50,66 @@
     <session id="1503752669">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="5" />
+          <entry key="project.closed" value="7" />
           <entry key="project.open.time.1" value="1" />
+          <entry key="project.open.time.103" value="1" />
+          <entry key="project.open.time.133" value="1" />
+          <entry key="project.open.time.25" value="1" />
           <entry key="project.open.time.40" value="1" />
           <entry key="project.open.time.41" value="1" />
-          <entry key="project.open.time.44" value="4" />
+          <entry key="project.open.time.42" value="1" />
+          <entry key="project.open.time.43" value="2" />
+          <entry key="project.open.time.44" value="5" />
           <entry key="project.open.time.45" value="2" />
-          <entry key="project.open.time.46" value="1" />
+          <entry key="project.open.time.46" value="2" />
           <entry key="project.open.time.48" value="2" />
           <entry key="project.open.time.50" value="2" />
           <entry key="project.open.time.51" value="2" />
+          <entry key="project.open.time.52" value="1" />
           <entry key="project.open.time.53" value="1" />
           <entry key="project.open.time.54" value="2" />
-          <entry key="project.open.time.55" value="1" />
-          <entry key="project.open.time.56" value="3" />
+          <entry key="project.open.time.55" value="2" />
+          <entry key="project.open.time.56" value="4" />
+          <entry key="project.open.time.59" value="1" />
+          <entry key="project.open.time.61" value="2" />
           <entry key="project.open.time.64" value="1" />
           <entry key="project.open.time.66" value="1" />
+          <entry key="project.open.time.72" value="1" />
           <entry key="project.open.time.79" value="1" />
           <entry key="project.open.time.8" value="1" />
           <entry key="project.open.time.87" value="1" />
-          <entry key="project.opened" value="28" />
+          <entry key="project.opened" value="43" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
+          <entry key="AbstractHandlerMapping" value="1" />
+          <entry key="BeanNameUrlHandlerMapping" value="1" />
+          <entry key="CommonsMultipartResolver" value="1" />
+          <entry key="DispatcherServlet" value="1" />
+          <entry key="HandlerExecutionChain" value="1" />
+          <entry key="HandlerMapper" value="1" />
+          <entry key="HttpRequestHandlerAdapter" value="1" />
+          <entry key="MultipartFile" value="1" />
+          <entry key="MultipartHttpServletRequest" value="1" />
+          <entry key="Nullable" value="1" />
+          <entry key="RequestMappingHandlerAdapter" value="1" />
+          <entry key="RequestMappingHandlerMapping" value="2" />
+          <entry key="SimpleControllerHandlerAdapter" value="1" />
+          <entry key="SimpleUrlHandlerMapping" value="1" />
+          <entry key="StandardServletMultipartResolver" value="2" />
           <entry key="class" value="7" />
           <entry key="html" value="16" />
           <entry key="iml" value="1" />
-          <entry key="java" value="199" />
+          <entry key="java" value="310" />
           <entry key="json" value="2" />
           <entry key="mvc-annotation-enableautoconfiguration" value="1" />
           <entry key="mvc-sql-inject" value="1" />
           <entry key="pom" value="3" />
-          <entry key="properties" value="19" />
+          <entry key="properties" value="25" />
           <entry key="sql" value="1" />
-          <entry key="txt" value="42" />
-          <entry key="xml" value="40" />
+          <entry key="txt" value="47" />
+          <entry key="xml" value="47" />
           <entry key="yml" value="4" />
         </counts>
       </usages-collector>
@@ -90,33 +118,36 @@
           <entry key="CLASS" value="7" />
           <entry key="HTML" value="16" />
           <entry key="IDEA_MODULE" value="1" />
-          <entry key="JAVA" value="199" />
+          <entry key="JAVA" value="310" />
           <entry key="JSON" value="2" />
-          <entry key="PLAIN_TEXT" value="44" />
-          <entry key="Properties" value="19" />
+          <entry key="PLAIN_TEXT" value="49" />
+          <entry key="Properties" value="25" />
           <entry key="SQL" value="1" />
-          <entry key="XML" value="43" />
+          <entry key="UML" value="17" />
+          <entry key="XML" value="50" />
           <entry key="YAML" value="4" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="dummy" value="1" />
+          <entry key="dummy" value="2" />
+          <entry key="ft" value="28" />
           <entry key="html" value="1207" />
-          <entry key="java" value="11098" />
-          <entry key="properties" value="2589" />
-          <entry key="txt" value="4532" />
-          <entry key="xml" value="273" />
+          <entry key="java" value="13218" />
+          <entry key="properties" value="2703" />
+          <entry key="txt" value="5005" />
+          <entry key="xml" value="386" />
           <entry key="yml" value="5" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="HTML" value="1207" />
-          <entry key="JAVA" value="11098" />
-          <entry key="PLAIN_TEXT" value="4533" />
-          <entry key="Properties" value="2589" />
-          <entry key="XML" value="273" />
+          <entry key="JAVA" value="13218" />
+          <entry key="PLAIN_TEXT" value="5007" />
+          <entry key="Properties" value="2703" />
+          <entry key="VTL" value="28" />
+          <entry key="XML" value="386" />
           <entry key="YAML" value="5" />
         </counts>
       </usages-collector>
@@ -125,74 +156,106 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/boot-ioc-bean/src/test/java/bean/BeanTest1.java">
+        <entry file="file://$PROJECT_DIR$/boot-datasource/src/main/java/org/yuanxing/bootdatasource/service/impl/BorrowServiceImpl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="253">
-              <caret line="11" column="10" selection-start-line="11" selection-start-column="10" selection-end-line="11" selection-end-column="10" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/boot-mvc-annotation/src/main/resources/mvc-annotation.txt">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="207">
-              <caret line="9" column="31" selection-start-line="9" selection-start-column="22" selection-end-line="9" selection-end-column="33" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/boot-mvc-annotation/src/main/resources/mvc-annotation-multipartresolver.txt">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="732">
-              <caret line="278" column="11" selection-start-line="278" selection-start-column="11" selection-end-line="278" selection-end-column="11" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/boot-mvc-annotation/src/main/java/org/yuanxing/bootmvcannotation/controller/FileUploadController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="299">
-              <caret line="61" column="58" lean-forward="true" selection-start-line="61" selection-start-column="58" selection-end-line="61" selection-end-column="58" />
+            <state relative-caret-position="598">
+              <caret line="33" column="37" selection-start-line="33" selection-start-column="37" selection-end-line="33" selection-end-column="37" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#609#610#0" expanded="true" />
-                <element signature="e#639#640#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/boot-mvc-annotation/src/main/resources/application.properties">
+        <entry file="file://$PROJECT_DIR$/boot-datasource/src/main/java/org/yuanxing/bootdatasource/service/TestService1.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="345">
-              <caret line="15" lean-forward="true" selection-start-line="15" selection-end-line="15" />
+            <state relative-caret-position="276">
+              <caret line="12" column="23" selection-start-line="12" selection-start-column="23" selection-end-line="12" selection-end-column="23" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/pom.xml">
-          <provider selected="true" editor-type-id="text-editor" />
+        <entry file="file://$PROJECT_DIR$/boot-datasource/src/main/java/org/yuanxing/bootdatasource/service/impl/TestService1Impl.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="437">
+              <caret line="25" column="62" selection-start-line="25" selection-start-column="36" selection-end-line="25" selection-end-column="62" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/boot-datasource/src/main/java/org/yuanxing/bootdatasource/service/impl/TestService2Impl.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="276">
+              <caret line="18" selection-start-line="18" selection-end-line="18" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/boot-datasource/src/main/resources/update.txt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="92">
+              <caret line="4" column="29" selection-start-line="4" selection-start-column="29" selection-end-line="4" selection-end-column="29" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/boot-datasource/src/main/java/org/yuanxing/bootdatasource/config/package-info.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="138">
+              <caret line="6" column="43" selection-start-line="6" selection-start-column="43" selection-end-line="6" selection-end-column="43" />
+              <folding>
+                <element signature="n#!!doc" expanded="true" />
+              </folding>
+            </state>
+          </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/boot-mvc-annotation/pom.xml">
+        <entry file="file://$PROJECT_DIR$/boot-mybatis/src/main/resources/application.properties">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="437">
-              <caret line="19" column="22" lean-forward="true" selection-start-line="19" selection-start-column="22" selection-end-line="19" selection-end-column="22" />
+            <state relative-caret-position="391">
+              <caret line="71" selection-start-line="71" selection-end-line="71" selection-end-column="90" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-web/5.0.12.RELEASE/spring-web-5.0.12.RELEASE-sources.jar!/org/springframework/web/multipart/MultipartResolver.java">
+        <entry file="file://$PROJECT_DIR$/boot-datasource/src/main/java/org/yuanxing/bootdatasource/annotation/DataSource.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="427">
-              <caret line="104" column="45" selection-start-line="104" selection-start-column="45" selection-end-line="104" selection-end-column="45" />
+            <state relative-caret-position="299">
+              <caret line="13" column="18" selection-start-line="13" selection-start-column="18" selection-end-line="13" selection-end-column="18" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/boot-datasource/src/main/java/org/yuanxing/bootdatasource/BootDatasourceApplication.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="115">
+              <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/boot-datasource/src/main/java/org/yuanxing/bootdatasource/aspect/impl/LogAspect.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="575">
+              <caret line="29" column="9" selection-start-line="29" selection-start-column="9" selection-end-line="29" selection-end-column="9" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -203,14 +266,15 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="HTML File" />
+        <option value="package-info" />
+        <option value="AnnotationType" />
+        <option value="Interface" />
         <option value="Class" />
       </list>
     </option>
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>spring.h2.console.enabled</find>
-      <find>spring.h2.console.path</find>
       <find>spring.h2.console.settings.web-allow-others</find>
       <find>spring-configuration-</find>
       <find>load filter error, filter not found</find>
@@ -233,6 +297,14 @@
       <find>converterPage</find>
       <find>AnnotationConfigApplicationContext</find>
       <find>MultipartResolver</find>
+      <find>DispatchServlet</find>
+      <find>contextInitialized</find>
+      <find>initStrategies</find>
+      <find>doDis</find>
+      <find>defaultHandler</find>
+      <find>getH</find>
+      <find>afterPropertiesSet</find>
+      <find>spring.datasource.druid.main</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -241,36 +313,10 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/boot-mvc-annotation/src/main/java/org/yuanxing/bootmvcannotation/util/ContextUtil.java" />
-        <option value="$PROJECT_DIR$/boot-mvc-annotation/src/main/resources/mvc-annotation-registry.txt" />
-        <option value="$PROJECT_DIR$/boot-mvc-annotation/src/main/java/org/yuanxing/bootmvcannotation/formatter/DatesFormatter.java" />
-        <option value="$PROJECT_DIR$/boot-mvc-annotation/src/main/java/org/yuanxing/bootmvcannotation/bean/Department.java" />
-        <option value="$PROJECT_DIR$/boot-mvc-annotation/src/main/resources/templates/mainpage.html" />
-        <option value="$PROJECT_DIR$/boot-mvc-annotation/src/main/java/org/yuanxing/bootmvcannotation/bean/Employee.java" />
-        <option value="$PROJECT_DIR$/boot-mvc-annotation/src/main/java/org/yuanxing/bootmvcannotation/converter/EmployeeConverter.java" />
-        <option value="$PROJECT_DIR$/boot-mvc-annotation/src/main/java/org/yuanxing/bootmvcannotation/controller/MainController.java" />
-        <option value="$PROJECT_DIR$/boot-mvc-annotation/src/main/java/org/yuanxing/bootmvcannotation/converter/StringToDateConverter.java" />
-        <option value="$PROJECT_DIR$/boot-mvc-annotation/src/main/java/org/yuanxing/bootmvcannotation/controller/ConverterController.java" />
-        <option value="$PROJECT_DIR$/boot-mvc-annotation/src/main/resources/templates/mvcannotation1/converterPage.html" />
-        <option value="$PROJECT_DIR$/boot-mvc-annotation/src/main/resources/mvc-annotation-validation.txt" />
-        <option value="$PROJECT_DIR$/boot-mvc/src/main/resources/view.txt" />
-        <option value="$PROJECT_DIR$/boot-mvc/src/main/java/org/yuanxing/bootmvc/day2/BaseController.java" />
-        <option value="$PROJECT_DIR$/boot-mvc/src/main/java/org/yuanxing/bootmvc/day2/editor/BootDoubleEditor.java" />
-        <option value="$PROJECT_DIR$/boot-mvc/src/main/java/org/yuanxing/bootmvc/day2/editor/BootIntegerEditor.java" />
-        <option value="$PROJECT_DIR$/boot-mvc/src/main/java/org/yuanxing/bootmvc/day2/editor/BootDateEditor.java" />
-        <option value="$PROJECT_DIR$/boot-mvc/src/main/java/org/yuanxing/bootmvc/day2/controller/BaseController.java" />
-        <option value="$PROJECT_DIR$/boot-mvc/src/main/resources/annotation.txt" />
-        <option value="$PROJECT_DIR$/boot-mvc/src/main/java/org/yuanxing/bootmvc/day1/controller/RequestParamController.java" />
-        <option value="$PROJECT_DIR$/boot-mvc-annotation/src/main/resources/mvc-annotation-webfilter.txt" />
-        <option value="$PROJECT_DIR$/boot-mvc-annotation/src/main/resources/mvc-annotation-servletcomponentscan.txt" />
-        <option value="$PROJECT_DIR$/boot-mvc-annotation/src/main/resources/mvc-interceptor-filter.txt" />
-        <option value="$PROJECT_DIR$/boot-mvc-annotation/src/main/java/org/yuanxing/bootmvcannotation/interceptor/RootInterceptor.java" />
-        <option value="$PROJECT_DIR$/boot-mvc-annotation/src/main/java/org/yuanxing/bootmvcannotation/interceptor/MyWebRequestInterceptor.java" />
         <option value="$PROJECT_DIR$/boot-mvc-annotation/src/main/java/org/yuanxing/bootmvcannotation/filter/TestFilter1.java" />
         <option value="$PROJECT_DIR$/boot-mvc-annotation/src/main/java/org/yuanxing/bootmvcannotation/config/TypeConversionConfig.java" />
         <option value="$PROJECT_DIR$/boot-mvc-annotation/src/main/java/org/yuanxing/bootmvcannotation/config/WebMvcConfig.java" />
         <option value="$PROJECT_DIR$/boot-mvc-annotation/src/main/java/org/yuanxing/bootmvcannotation/config/InterceptorConfig.java" />
-        <option value="$PROJECT_DIR$/boot-mvc-annotation/pom.xml" />
         <option value="$PROJECT_DIR$/boot-mvc-annotation/src/main/resources/mvc-xss.txt" />
         <option value="$PROJECT_DIR$/boot-mvc-annotation/src/main/java/org/yuanxing/bootmvcannotation/interceptor/SecurityInterceptor.java" />
         <option value="$PROJECT_DIR$/boot-mvc-annotation/src/main/java/org/yuanxing/bootmvcannotation/interceptor/MonitorInterceptor.java" />
@@ -292,6 +338,32 @@
         <option value="$PROJECT_DIR$/boot-mvc-annotation/src/main/java/org/yuanxing/bootmvcannotation/controller/FileUploadController.java" />
         <option value="$PROJECT_DIR$/boot-mvc-annotation/src/main/resources/mvc-annotation-multipartresolver.txt" />
         <option value="$PROJECT_DIR$/boot-mvc-annotation/src/main/resources/application.properties" />
+        <option value="$PROJECT_DIR$/boot-common/src/main/resources/boot-optimize-ifelse.txt" />
+        <option value="$PROJECT_DIR$/boot-mvc-annotation/pom.xml" />
+        <option value="$PROJECT_DIR$/boot-datasource/src/main/resources/application.properties" />
+        <option value="$PROJECT_DIR$/boot-datasource/src/main/java/org/yuanxing/bootdatasource/config/MultipleDataSource.java" />
+        <option value="$PROJECT_DIR$/boot-datasource/pom.xml" />
+        <option value="$PROJECT_DIR$/boot-datasource/src/main/java/org/yuanxing/bootdatasource/aspect/package-info.java" />
+        <option value="$PROJECT_DIR$/boot-datasource/src/main/java/org/yuanxing/bootdatasource/config/package-info.java" />
+        <option value="$PROJECT_DIR$/boot-datasource/src/main/java/org/yuanxing/bootdatasource/controller/package-info.java" />
+        <option value="$PROJECT_DIR$/boot-datasource/src/main/java/org/yuanxing/bootdatasource/service/BorrowService.java" />
+        <option value="$PROJECT_DIR$/boot-datasource/src/main/java/org/yuanxing/bootdatasource/config/MvcConfig.java" />
+        <option value="$PROJECT_DIR$/boot-datasource/src/main/java/org/yuanxing/bootdatasource/util/package-info.java" />
+        <option value="$PROJECT_DIR$/boot-datasource/src/main/java/org/yuanxing/bootdatasource/util/ContextUtil.java" />
+        <option value="$PROJECT_DIR$/boot-datasource/src/main/java/org/yuanxing/bootdatasource/controller/BorrowController.java" />
+        <option value="$PROJECT_DIR$/boot-datasource/src/main/java/org/yuanxing/bootdatasource/annotation/DataSource.java" />
+        <option value="$PROJECT_DIR$/boot-datasource/src/main/java/org/yuanxing/bootdatasource/aspect/impl/updateDataSourceAspect.java" />
+        <option value="$PROJECT_DIR$/boot-datasource/src/main/java/org/yuanxing/bootdatasource/aspect/RootAspect.java" />
+        <option value="$PROJECT_DIR$/boot-datasource/src/main/java/org/yuanxing/bootdatasource/aspect/impl/UpdateDataSourceAspect.java" />
+        <option value="$PROJECT_DIR$/boot-datasource/src/main/java/org/yuanxing/bootdatasource/service/TestService1.java" />
+        <option value="$PROJECT_DIR$/boot-datasource/src/main/java/org/yuanxing/bootdatasource/service/TestService2.java" />
+        <option value="$PROJECT_DIR$/boot-datasource/src/main/resources/datasource.properties" />
+        <option value="$PROJECT_DIR$/boot-datasource/src/main/java/org/yuanxing/bootdatasource/config/DataSourceConfig.java" />
+        <option value="$PROJECT_DIR$/boot-datasource/src/main/java/org/yuanxing/bootdatasource/service/impl/TestService1Impl.java" />
+        <option value="$PROJECT_DIR$/boot-datasource/src/main/java/org/yuanxing/bootdatasource/service/impl/BorrowServiceImpl.java" />
+        <option value="$PROJECT_DIR$/boot-datasource/src/main/java/org/yuanxing/bootdatasource/service/impl/TestService2Impl.java" />
+        <option value="$PROJECT_DIR$/boot-datasource/src/main/java/org/yuanxing/bootdatasource/aspect/impl/LogAspect.java" />
+        <option value="$PROJECT_DIR$/boot-datasource/src/main/resources/update.txt" />
       </list>
     </option>
   </component>
@@ -319,37 +391,26 @@
       <expand>
         <path>
           <item name="" type="16c1761:MavenProjectsStructure$RootNode" />
-          <item name="boot-ioc-bean" type="9519ce18:MavenProjectsStructure$ProjectNode" />
+          <item name="boot-datasource" type="9519ce18:MavenProjectsStructure$ProjectNode" />
         </path>
         <path>
           <item name="" type="16c1761:MavenProjectsStructure$RootNode" />
-          <item name="boot-ioc-bean" type="9519ce18:MavenProjectsStructure$ProjectNode" />
+          <item name="boot-datasource" type="9519ce18:MavenProjectsStructure$ProjectNode" />
           <item name="Dependencies" type="f4be9f2a:MavenProjectsStructure$DependenciesNode" />
         </path>
         <path>
           <item name="" type="16c1761:MavenProjectsStructure$RootNode" />
-          <item name="boot-ioc-bean" type="9519ce18:MavenProjectsStructure$ProjectNode" />
+          <item name="boot-datasource" type="9519ce18:MavenProjectsStructure$ProjectNode" />
           <item name="Dependencies" type="f4be9f2a:MavenProjectsStructure$DependenciesNode" />
-          <item name="org.springframework.boot:spring-boot-starter:2.0.8.RELEASE" type="c0821a7e:MavenProjectsStructure$DependencyNode" />
-        </path>
-        <path>
-          <item name="" type="16c1761:MavenProjectsStructure$RootNode" />
-          <item name="boot-ioc-bean" type="9519ce18:MavenProjectsStructure$ProjectNode" />
-          <item name="Dependencies" type="f4be9f2a:MavenProjectsStructure$DependenciesNode" />
-          <item name="org.springframework.boot:spring-boot-starter:2.0.8.RELEASE" type="c0821a7e:MavenProjectsStructure$DependencyNode" />
-          <item name="org.springframework.boot:spring-boot:2.0.8.RELEASE" type="c0821a7e:MavenProjectsStructure$DependencyNode" />
-        </path>
-        <path>
-          <item name="" type="16c1761:MavenProjectsStructure$RootNode" />
-          <item name="boot-mvc-annotation" type="9519ce18:MavenProjectsStructure$ProjectNode" />
+          <item name="org.springframework.boot:spring-boot-starter-aop:2.0.8.RELEASE" type="c0821a7e:MavenProjectsStructure$DependencyNode" />
         </path>
       </expand>
       <select />
     </treeState>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
-    <option name="x" value="-8" />
-    <option name="y" value="-8" />
+  <component name="ProjectFrameBounds" extendedState="1">
+    <option name="x" value="910" />
+    <option name="y" value="50" />
     <option name="width" value="813" />
     <option name="height" value="994" />
   </component>
@@ -372,47 +433,28 @@
             <path>
               <item name="bootStudy" type="b2602c69:ProjectViewProjectNode" />
               <item name="bootStudy" type="462c0819:PsiDirectoryNode" />
-              <item name="boot-mvc-annotation" type="462c0819:PsiDirectoryNode" />
+              <item name="boot-mybatis" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="bootStudy" type="b2602c69:ProjectViewProjectNode" />
               <item name="bootStudy" type="462c0819:PsiDirectoryNode" />
-              <item name="boot-mvc-annotation" type="462c0819:PsiDirectoryNode" />
+              <item name="boot-mybatis" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="bootStudy" type="b2602c69:ProjectViewProjectNode" />
               <item name="bootStudy" type="462c0819:PsiDirectoryNode" />
-              <item name="boot-mvc-annotation" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="bootStudy" type="b2602c69:ProjectViewProjectNode" />
-              <item name="bootStudy" type="462c0819:PsiDirectoryNode" />
-              <item name="boot-mvc-annotation" type="462c0819:PsiDirectoryNode" />
+              <item name="boot-mybatis" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="bootStudy" type="b2602c69:ProjectViewProjectNode" />
               <item name="bootStudy" type="462c0819:PsiDirectoryNode" />
-              <item name="boot-mvc-annotation" type="462c0819:PsiDirectoryNode" />
+              <item name="boot-mybatis" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="bootmvcannotation" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="bootStudy" type="b2602c69:ProjectViewProjectNode" />
-              <item name="bootStudy" type="462c0819:PsiDirectoryNode" />
-              <item name="boot-mvc-annotation" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="bootmvcannotation" type="462c0819:PsiDirectoryNode" />
-              <item name="controller" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -430,13 +472,13 @@
     <property name="SearchEverywhereHistoryKey" value="see&#9;PSI&#9;JAVA://sun.security.provider.AbstractDrbg.SeederHolder" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1560319375932" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1561371138821" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
-    <property name="settings.editor.selected.configurable" value="reference.projectsettings.compiler.javacompiler" />
+    <property name="settings.editor.selected.configurable" value="fileTemplates" />
   </component>
   <component name="RecentsManager">
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
@@ -469,7 +511,20 @@
     </option>
     <option name="contentProportion" value="0.20562771" />
   </component>
-  <component name="RunManager" selected="Spring Boot.BootMvcAnnotationApplication">
+  <component name="RunManager" selected="Spring Boot.BootDatasourceApplication">
+    <configuration name="DataSourceConfig" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="org.yuanxing.bootdatasource.config.DataSourceConfig" />
+      <module name="boot-datasource" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.yuanxing.bootdatasource.config.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="MessageConvertersTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="org.yuanxing.bootmvcannotation.mvcTest.MessageConvertersTest" />
       <module name="boot-mvc-annotation" />
@@ -496,32 +551,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="TestMain3" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="org.yuanxing.bootmvcannotation.mainTest.TestMain3" />
-      <module name="boot-mvc-annotation" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="org.yuanxing.bootmvcannotation.mainTest.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="TestMain4" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="org.yuanxing.bootmvcannotation.mainTest.TestMain4" />
-      <module name="boot-mvc-annotation" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="org.yuanxing.bootmvcannotation.mainTest.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="TestMain5" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="org.yuanxing.bootmvcannotation.mainTest.TestMain5" />
       <module name="boot-mvc-annotation" />
@@ -535,9 +564,29 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="UpdateDataSourceAspect" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="org.yuanxing.bootdatasource.aspect.impl.UpdateDataSourceAspect" />
+      <module name="boot-datasource" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.yuanxing.bootdatasource.aspect.impl.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="BootCommonApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
       <module name="boot-common" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="org.yuanxing.bootCommon.BootCommonApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="BootDatasourceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="boot-datasource" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="org.yuanxing.bootdatasource.BootDatasourceApplication" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -600,19 +649,20 @@
       <item itemvalue="Spring Boot.BootMybatisApplication" />
       <item itemvalue="Spring Boot.BootMvcAnnotationApplication" />
       <item itemvalue="Spring Boot.BootIocBeanApplication" />
-      <item itemvalue="Application.TestMain3" />
-      <item itemvalue="Application.TestMain4" />
+      <item itemvalue="Spring Boot.BootDatasourceApplication" />
       <item itemvalue="Application.TestMain5" />
       <item itemvalue="Application.MessageConvertersTest" />
       <item itemvalue="Application.SerializerFeatureTest" />
+      <item itemvalue="Application.DataSourceConfig" />
+      <item itemvalue="Application.UpdateDataSourceAspect" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.UpdateDataSourceAspect" />
+        <item itemvalue="Application.DataSourceConfig" />
         <item itemvalue="Application.SerializerFeatureTest" />
         <item itemvalue="Application.MessageConvertersTest" />
         <item itemvalue="Application.TestMain5" />
-        <item itemvalue="Application.TestMain4" />
-        <item itemvalue="Application.TestMain3" />
       </list>
     </recent_temporary>
   </component>
@@ -653,18 +703,33 @@
       <workItem from="1559783213556" duration="21997000" />
       <workItem from="1560127585805" duration="6000000" />
       <workItem from="1560240799442" duration="4341000" />
-      <workItem from="1560303884752" duration="5828000" />
+      <workItem from="1560303884752" duration="15149000" />
+      <workItem from="1560740022410" duration="10713000" />
+      <workItem from="1560817551677" duration="11890000" />
+      <workItem from="1560905508450" duration="16639000" />
+      <workItem from="1560993223300" duration="9537000" />
+      <workItem from="1561079114018" duration="8393000" />
+      <workItem from="1561337318343" duration="19271000" />
+      <workItem from="1561424471425" duration="826000" />
+      <workItem from="1561512197088" duration="2385000" />
+      <workItem from="1561599921497" duration="806000" />
+      <workItem from="1561602409018" duration="579000" />
+      <workItem from="1561628230304" duration="587000" />
+      <workItem from="1561686300467" duration="594000" />
+      <workItem from="1562029581088" duration="1336000" />
+      <workItem from="1562115127779" duration="70000" />
+      <workItem from="1562298324580" duration="1991000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="215293000" />
+    <option name="totallyTimeSpent" value="310231000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="7" />
+    <frame x="910" y="50" width="813" height="994" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.34754798" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.0" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -674,8 +739,8 @@
       <window_info id="Web" order="7" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.3291714" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.76492536" weight="0.19977298" />
-      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.8566098" weight="0.86379117" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.76492536" weight="0.0" />
+      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.8566098" weight="0.23723042" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -687,20 +752,20 @@
       <window_info anchor="bottom" id="Database Changes" order="12" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="13" show_stripe_button="false" />
       <window_info anchor="bottom" id="Messages" order="14" sideWeight="0.49840087" weight="0.4631101" />
-      <window_info anchor="bottom" id="Run Dashboard" order="15" weight="0.022701476" />
+      <window_info anchor="bottom" id="Run Dashboard" order="15" visible="true" weight="0.0025157232" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="right" id="Palette" order="3" />
       <window_info anchor="right" id="Capture Analysis" order="4" />
-      <window_info anchor="right" id="Maven Projects" order="5" visible="true" weight="0.0042643924" />
+      <window_info anchor="right" id="Maven Projects" order="5" weight="0.10394456" />
       <window_info anchor="right" id="Database" order="6" weight="0.32942432" />
       <window_info anchor="right" id="Palette&#9;" order="7" />
       <window_info anchor="right" id="Theme Preview" order="8" />
       <window_info anchor="right" id="Bean Validation" order="9" weight="0.32995737" />
     </layout>
     <layout-to-restore>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.27878466" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.26545843" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -710,8 +775,8 @@
       <window_info id="Web" order="7" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.3291714" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.76492536" weight="0.19977298" />
-      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.8566098" weight="0.86379117" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.76492536" weight="0.0" />
+      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.8566098" weight="0.23723042" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -723,13 +788,13 @@
       <window_info anchor="bottom" id="Database Changes" order="12" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="13" show_stripe_button="false" />
       <window_info anchor="bottom" id="Messages" order="14" sideWeight="0.49840087" weight="0.4631101" />
-      <window_info anchor="bottom" id="Run Dashboard" order="15" visible="true" weight="0.022701476" />
+      <window_info active="true" anchor="bottom" id="Run Dashboard" order="15" visible="true" weight="0.110102154" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="right" id="Palette" order="3" />
       <window_info anchor="right" id="Capture Analysis" order="4" />
-      <window_info anchor="right" id="Maven Projects" order="5" visible="true" weight="0.052238807" />
+      <window_info anchor="right" id="Maven Projects" order="5" weight="0.10394456" />
       <window_info anchor="right" id="Database" order="6" weight="0.32942432" />
       <window_info anchor="right" id="Palette&#9;" order="7" />
       <window_info anchor="right" id="Theme Preview" order="8" />
@@ -754,355 +819,391 @@
       </breakpoints>
     </breakpoint-manager>
   </component>
+  <component name="antWorkspaceConfiguration">
+    <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />
+    <option name="FILTER_TARGETS" value="false" />
+  </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/boot-mvc-annotation/src/main/resources/mvc-annotation-webfilter.txt">
+    <entry file="jar://$MAVEN_REPOSITORY$/commons-fileupload/commons-fileupload/1.3.3/commons-fileupload-1.3.3-sources.jar!/org/apache/commons/fileupload/servlet/ServletFileUpload.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="129">
-          <caret line="7" column="4" selection-start-line="7" selection-start-column="4" selection-end-line="7" selection-end-column="14" />
+        <state relative-caret-position="598">
+          <caret line="52" column="32" selection-start-line="52" selection-start-column="32" selection-end-line="52" selection-end-column="32" />
         </state>
       </provider>
     </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-webmvc/5.0.12.RELEASE/spring-webmvc-5.0.12.RELEASE-sources.jar!/org/springframework/web/servlet/config/annotation/InterceptorRegistration.java">
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-web/5.0.12.RELEASE/spring-web-5.0.12.RELEASE-sources.jar!/org/springframework/web/multipart/support/StandardServletMultipartResolver.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="230">
-          <caret line="36" column="36" lean-forward="true" selection-start-line="36" selection-start-column="13" selection-end-line="36" selection-end-column="36" />
+        <state relative-caret-position="1610">
+          <caret line="80" column="58" selection-start-line="80" selection-start-column="58" selection-end-line="80" selection-end-column="58" />
         </state>
       </provider>
     </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-webmvc/5.0.12.RELEASE/spring-webmvc-5.0.12.RELEASE-sources.jar!/org/springframework/web/servlet/config/annotation/InterceptorRegistry.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="621">
-          <caret line="59" column="71" lean-forward="true" selection-start-line="59" selection-start-column="71" selection-end-line="59" selection-end-column="71" />
+    <entry file="uml://JAVA/org.springframework.web.servlet.handler.AbstractHandlerMapping">
+      <provider selected="true" editor-type-id="UmlEditorProvider">
+        <state>
+          <ID>JAVA</ID>
+          <OriginalElement>org.springframework.web.servlet.handler.AbstractHandlerMapping</OriginalElement>
+          <nodes>
+            <node x="" y="">org.springframework.web.context.ServletContextAware</node>
+            <node x="" y="">org.springframework.core.Ordered</node>
+            <node x="" y="">org.springframework.web.context.support.WebApplicationObjectSupport</node>
+            <node x="" y="">org.springframework.web.servlet.HandlerMapping</node>
+            <node x="" y="">org.springframework.beans.factory.Aware</node>
+            <node x="" y="">org.springframework.context.support.ApplicationObjectSupport</node>
+            <node x="" y="">org.springframework.web.servlet.handler.AbstractHandlerMapping</node>
+            <node x="" y="">org.springframework.context.ApplicationContextAware</node>
+          </nodes>
+          <notes />
+          <edges />
+          <settings layout="Hierarchic Group" zoom="1.0" x="293.0" y="175.0" />
+          <SelectedNodes />
+          <Categories />
+          <SCOPE>All</SCOPE>
+          <VISIBILITY>private</VISIBILITY>
         </state>
       </provider>
     </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-web/5.0.12.RELEASE/spring-web-5.0.12.RELEASE-sources.jar!/org/springframework/web/context/request/WebRequest.java">
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-webmvc/5.0.12.RELEASE/spring-webmvc-5.0.12.RELEASE-sources.jar!/org/springframework/web/servlet/DispatcherServlet.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="257">
-          <caret line="54" column="13" selection-start-line="54" selection-start-column="13" selection-end-line="54" selection-end-column="13" />
+        <state relative-caret-position="25875">
+          <caret line="1187" column="56" selection-start-line="1187" selection-start-column="56" selection-end-line="1187" selection-end-column="56" />
         </state>
       </provider>
     </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-web/5.0.12.RELEASE/spring-web-5.0.12.RELEASE-sources.jar!/org/springframework/web/context/request/WebRequestInterceptor.java">
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-webmvc/5.0.12.RELEASE/spring-webmvc-5.0.12.RELEASE-sources.jar!/org/springframework/web/servlet/HandlerExecutionChain.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="610">
-          <caret line="65" column="23" selection-start-line="65" selection-start-column="23" selection-end-line="65" selection-end-column="23" />
+        <state relative-caret-position="322">
+          <caret line="38" column="13" selection-start-line="38" selection-start-column="13" selection-end-line="38" selection-end-column="34" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/boot-mvc-annotation/src/main/java/org/yuanxing/bootmvcannotation/interceptor/MyWebRequestInterceptor.java">
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-webmvc/5.0.12.RELEASE/spring-webmvc-5.0.12.RELEASE-sources.jar!/org/springframework/web/servlet/handler/AbstractHandlerMethodMapping.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="506">
-          <caret line="31" column="13" lean-forward="true" selection-start-line="31" selection-start-column="13" selection-end-line="31" selection-end-column="13" />
+        <state relative-caret-position="736">
+          <caret line="73" column="32" selection-start-line="73" selection-start-column="32" selection-end-line="73" selection-end-column="32" />
         </state>
       </provider>
     </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-core/5.0.12.RELEASE/spring-core-5.0.12.RELEASE-sources.jar!/org/springframework/core/convert/support/DefaultConversionService.java">
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-webmvc/5.0.12.RELEASE/spring-webmvc-5.0.12.RELEASE-sources.jar!/org/springframework/web/servlet/HandlerMapping.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1489">
-          <caret line="87" selection-start-line="87" selection-end-line="87" />
+        <state relative-caret-position="2806">
+          <caret line="138" column="29" selection-start-line="138" selection-start-column="29" selection-end-line="138" selection-end-column="29" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/boot-mvc-annotation/src/main/java/org/yuanxing/bootmvcannotation/filter/TestFilter1.java">
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-webmvc/5.0.12.RELEASE/spring-webmvc-5.0.12.RELEASE-sources.jar!/org/springframework/web/servlet/handler/AbstractHandlerMapping.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="37">
-          <caret line="18" column="53" selection-start-line="18" selection-start-column="53" selection-end-line="18" selection-end-column="53" />
+        <state relative-caret-position="1472">
+          <caret line="109" column="36" selection-start-line="109" selection-start-column="16" selection-end-line="109" selection-end-column="36" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/boot-mvc-annotation/src/main/java/org/yuanxing/bootmvcannotation/BootMvcAnnotationApplication.java">
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-webmvc/5.0.12.RELEASE/spring-webmvc-5.0.12.RELEASE-sources.jar!/org/springframework/web/servlet/handler/AbstractUrlHandlerMapping.java">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-web/5.0.12.RELEASE/spring-web-5.0.12.RELEASE-sources.jar!/org/springframework/web/util/UrlPathHelper.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="276">
-          <caret line="13" lean-forward="true" selection-start-line="13" selection-end-line="13" />
+        <state relative-caret-position="2806">
+          <caret line="162" column="18" selection-start-line="162" selection-start-column="18" selection-end-line="162" selection-end-column="18" />
         </state>
       </provider>
     </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-web/5.0.12.RELEASE/spring-web-5.0.12.RELEASE-sources.jar!/org/springframework/web/filter/CharacterEncodingFilter.java">
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-context/5.0.12.RELEASE/spring-context-5.0.12.RELEASE-sources.jar!/org/springframework/context/support/ApplicationObjectSupport.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1725" />
+        <state relative-caret-position="3013">
+          <caret line="157" column="39" selection-start-line="157" selection-start-column="39" selection-end-line="157" selection-end-column="39" />
+        </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/boot-mvc-annotation/src/main/java/org/yuanxing/bootmvcannotation/config/MessageConvertersConfig.java">
+    <entry file="file://$PROJECT_DIR$/boot-mvc-annotation/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1679">
+          <caret line="73" column="55" selection-start-line="73" selection-start-column="55" selection-end-line="73" selection-end-column="55" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-webmvc/5.0.12.RELEASE/spring-webmvc-5.0.12.RELEASE-sources.jar!/org/springframework/web/servlet/mvc/method/annotation/RequestMappingHandlerMapping.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="23">
-          <caret line="24" column="64" selection-start-line="24" selection-start-column="37" selection-end-line="24" selection-end-column="64" />
+          <caret line="272" column="13" selection-start-line="272" selection-start-column="7" selection-end-line="272" selection-end-column="64" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/boot-mvc-annotation/src/main/java/org/yuanxing/bootmvcannotation/config/WebMvcConfig.java">
+    <entry file="file://$PROJECT_DIR$/boot-h2/src/main/java/org/yuanxing/booth2/config/MultiDataSourceConfig.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1725">
-          <caret line="100" selection-start-line="100" selection-end-line="100" />
+        <state relative-caret-position="161">
+          <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/boot-common/pom.xml">
+    <entry file="file://$PROJECT_DIR$/boot-h2/src/main/java/org/yuanxing/booth2/config/DataSourceConfig.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="476">
-          <caret line="186" selection-start-line="186" selection-end-line="189" selection-end-column="21" />
+        <state relative-caret-position="161">
+          <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/boot-mvc-annotation/src/main/java/org/yuanxing/bootmvcannotation/interceptor/ScopeInterceptor.java">
+    <entry file="file://$PROJECT_DIR$/boot-h2/src/main/java/org/yuanxing/booth2/BootH2Application.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="496">
-          <caret line="31" column="14" selection-start-line="31" selection-start-column="14" selection-end-line="31" selection-end-column="14" />
+        <state relative-caret-position="598">
+          <caret line="26" column="34" selection-start-line="26" selection-start-column="34" selection-end-line="26" selection-end-column="34" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/boot-mvc-annotation/src/main/java/org/yuanxing/bootmvcannotation/config/TypeConversionConfig.java">
+    <entry file="file://$PROJECT_DIR$/boot-h2/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="460">
-          <caret line="20" column="2" selection-start-line="20" selection-start-column="2" selection-end-line="20" selection-end-column="2" />
+        <state relative-caret-position="667">
+          <caret line="62" column="44" selection-start-line="62" selection-start-column="44" selection-end-line="62" selection-end-column="52" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/boot-mvc-annotation/src/main/java/org/yuanxing/bootmvcannotation/interceptor/RootInterceptor.java">
+    <entry file="file://$PROJECT_DIR$/boot-druid/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="253">
-          <caret line="17" column="58" selection-start-line="17" selection-start-column="29" selection-end-line="17" selection-end-column="58" />
+        <state relative-caret-position="138">
+          <caret line="72" selection-start-line="72" selection-end-line="85" selection-end-column="21" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/boot-mvc-annotation/src/main/java/org/yuanxing/bootmvcannotation/interceptor/MonitorInterceptor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="368">
-          <caret line="19" column="61" selection-start-line="19" selection-start-column="32" selection-end-line="19" selection-end-column="61" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/boot-mvc-annotation/src/main/java/org/yuanxing/bootmvcannotation/interceptor/SecurityInterceptor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-621">
-          <caret line="27" column="62" selection-start-line="27" selection-start-column="33" selection-end-line="27" selection-end-column="62" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/boot-mvc-annotation/src/main/resources/mvc-o-xss.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="934">
-          <caret line="53" column="26" selection-start-line="53" selection-start-column="26" selection-end-line="53" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/boot-mvc-annotation/src/main/resources/mvc-o-csrf-cors.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="437">
-          <caret line="34" column="27" lean-forward="true" selection-start-line="34" selection-start-column="27" selection-end-line="34" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/boot-mvc-annotation/src/main/resources/mvc-o-sql-inject.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="23">
-          <caret line="1" selection-start-line="1" selection-end-line="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-core/5.0.12.RELEASE/spring-core-5.0.12.RELEASE-sources.jar!/org/springframework/core/NamedThreadLocal.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="506">
-          <caret line="36" column="7" selection-start-line="36" selection-start-column="7" selection-end-line="36" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/boot-mvc-annotation/src/main/resources/mvc-interceptor-filter.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="792">
-          <caret line="121" column="16" selection-start-line="121" selection-start-column="16" selection-end-line="121" selection-end-column="95" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/boot-mvc-annotation/src/main/java/org/yuanxing/bootmvcannotation/config/InterceptorConfig.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="768">
-          <caret line="46" column="2" selection-start-line="46" selection-start-column="2" selection-end-line="46" selection-end-column="2" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-context/5.1.7.RELEASE/spring-context-5.1.7.RELEASE.jar!/org/springframework/context/annotation/Bean.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="207">
-          <caret line="18" column="18" selection-start-line="18" selection-start-column="18" selection-end-line="18" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/boot-ioc-bean/src/main/java/org/yuanxing/bootiocbean/bean/Blue.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="55">
-          <caret line="8" selection-start-line="8" selection-end-line="33" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/boot-ioc-bean/src/main/java/org/yuanxing/bootiocbean/bean/Red.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="193">
-          <caret line="14" column="42" lean-forward="true" selection-start-line="14" selection-start-column="42" selection-end-line="14" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/boot-ioc-bean/src/main/java/org/yuanxing/bootiocbean/bean/Color.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="699">
-          <caret line="35" column="5" lean-forward="true" selection-start-line="10" selection-start-column="4" selection-end-line="35" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/boot-ioc-bean/src/main/java/org/yuanxing/bootiocbean/bean/Green.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="644">
-          <caret line="34" column="5" lean-forward="true" selection-start-line="9" selection-start-column="4" selection-end-line="34" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-context/5.1.7.RELEASE/spring-context-5.1.7.RELEASE.jar!/org/springframework/context/annotation/ScopedProxyMode.class">
+    <entry file="file://$PROJECT_DIR$/boot-datasource/src/main/resources/application.properties">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="115">
-          <caret line="8" column="4" selection-start-line="8" selection-start-column="4" selection-end-line="8" selection-end-column="4" />
+          <caret line="5" selection-start-line="5" selection-end-line="5" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/boot-ioc-bean/src/main/resources/ioc-componentscan.txt">
+    <entry file="file://$PROJECT_DIR$/boot-datasource/src/main/java/org/yuanxing/bootdatasource/aspect/package-info.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="700">
-          <caret line="71" column="37" selection-start-line="71" selection-start-column="37" selection-end-line="71" selection-end-column="37" />
+        <state relative-caret-position="115">
+          <caret line="5" column="28" selection-start-line="5" selection-start-column="28" selection-end-line="5" selection-end-column="28" />
         </state>
       </provider>
     </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-context/5.1.7.RELEASE/spring-context-5.1.7.RELEASE.jar!/org/springframework/context/annotation/Lazy.class">
+    <entry file="file://$PROJECT_DIR$/boot-datasource/src/main/java/org/yuanxing/bootdatasource/controller/package-info.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="207">
-          <caret line="16" column="18" selection-start-line="16" selection-start-column="18" selection-end-line="16" selection-end-column="18" />
+        <state relative-caret-position="92">
+          <caret line="4" column="34" selection-start-line="4" selection-start-column="34" selection-end-line="4" selection-end-column="34" />
         </state>
       </provider>
     </entry>
-    <entry file="jar://E:/jdk/lib/src.zip!/java.base/sun/security/provider/AbstractDrbg.java">
+    <entry file="file://$PROJECT_DIR$/boot-datasource/src/main/java/org/yuanxing/bootdatasource/service/impl/package-info.java" />
+    <entry file="file://$PROJECT_DIR$/boot-datasource/src/main/java/org/yuanxing/bootdatasource/service/package-info.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="279">
-          <caret line="527" column="25" selection-start-line="527" selection-start-column="25" selection-end-line="527" selection-end-column="25" />
+        <state relative-caret-position="138">
+          <caret line="6" column="25" lean-forward="true" selection-start-line="6" selection-start-column="25" selection-end-line="6" selection-end-column="25" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/boot-ioc-bean/pom.xml">
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-web/5.0.12.RELEASE/spring-web-5.0.12.RELEASE-sources.jar!/org/springframework/web/bind/annotation/RestController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1058">
-          <caret line="46" selection-start-line="46" selection-end-line="46" />
+        <state relative-caret-position="327">
+          <caret line="49" column="18" selection-start-line="49" selection-start-column="18" selection-end-line="49" selection-end-column="18" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/boot-ioc-bean/src/main/resources/ioc-bean.txt">
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-context/5.0.12.RELEASE/spring-context-5.0.12.RELEASE-sources.jar!/org/springframework/context/annotation/ComponentScan.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="828">
-          <caret line="36" column="8" selection-start-line="36" selection-start-column="8" selection-end-line="36" selection-end-column="17" />
+        <state relative-caret-position="109">
+          <caret line="58" column="18" selection-start-line="58" selection-start-column="18" selection-end-line="58" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/boot-datasource/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="372">
+          <caret line="90" column="29" selection-start-line="90" selection-start-column="29" selection-end-line="90" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/boot-datasource/src/main/java/org/yuanxing/bootdatasource/config/MvcConfig.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="345">
+          <caret line="15" column="1" lean-forward="true" selection-start-line="15" selection-start-column="1" selection-end-line="15" selection-end-column="1" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/boot-ioc-bean/src/main/java/org/yuanxing/bootiocbean/config/BeanConfig.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="529">
-          <caret line="36" column="16" selection-start-line="36" selection-start-column="16" selection-end-line="36" selection-end-column="16" />
+        <state relative-caret-position="220">
+          <caret line="18" column="13" selection-start-line="18" selection-start-column="13" selection-end-line="18" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/boot-mvc-annotation/src/main/java/org/yuanxing/bootmvcannotation/config/WebMvcConfig.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="82">
+          <caret line="38" column="13" selection-start-line="38" selection-start-column="13" selection-end-line="38" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/boot-datasource/src/main/java/org/yuanxing/bootdatasource/util/package-info.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="92">
+          <caret line="4" column="21" selection-start-line="4" selection-start-column="21" selection-end-line="4" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/boot-datasource/src/main/java/org/yuanxing/bootdatasource/util/ContextUtil.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="299">
+          <caret line="19" column="4" lean-forward="true" selection-start-line="19" selection-start-column="4" selection-end-line="19" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/boot-datasource/src/main/java/org/yuanxing/bootdatasource/controller/BorrowController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="178">
+          <caret line="15" column="56" selection-start-line="15" selection-start-column="56" selection-end-line="15" selection-end-column="56" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_151/src.zip!/java/lang/annotation/ElementType.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="63">
+          <caret line="77" column="10" lean-forward="true" selection-start-line="77" selection-start-column="10" selection-end-line="77" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_151/src.zip!/java/lang/annotation/Documented.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="391">
+          <caret line="40" column="23" lean-forward="true" selection-start-line="40" selection-start-column="23" selection-end-line="40" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/boot-datasource/src/main/java/org/yuanxing/bootdatasource/aspect/RootAspect.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="197">
+          <caret line="52" column="48" selection-start-line="52" selection-start-column="48" selection-end-line="52" selection-end-column="48" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/boot-datasource/src/main/java/org/yuanxing/bootdatasource/aspect/impl/UpdateDataSourceAspect.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="406">
+          <caret line="60" selection-start-line="60" selection-end-line="60" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/boot-datasource/src/main/java/org/yuanxing/bootdatasource/service/BorrowService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="276">
+          <caret line="12" column="58" lean-forward="true" selection-start-line="12" selection-start-column="58" selection-end-line="12" selection-end-column="58" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/boot-datasource/src/main/java/org/yuanxing/bootdatasource/service/TestService2.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="253">
+          <caret line="11" column="45" selection-start-line="11" selection-start-column="45" selection-end-line="11" selection-end-column="45" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/boot-datasource/src/main/resources/datasource.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="345">
+          <caret line="15" column="47" lean-forward="true" selection-start-line="15" selection-start-column="47" selection-end-line="15" selection-end-column="47" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/boot-datasource/src/main/java/org/yuanxing/bootdatasource/config/MultipleDataSource.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="598">
+          <caret line="28" column="23" selection-start-line="28" selection-start-column="23" selection-end-line="28" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/boot-datasource/src/main/java/org/yuanxing/bootdatasource/config/DataSourceConfig.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1541">
+          <caret line="85" column="5" selection-start-line="85" selection-start-column="5" selection-end-line="85" selection-end-column="5" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/boot-ioc-bean/src/main/java/org/yuanxing/bootiocbean/bean/Black.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="345">
-          <caret line="15" column="44" selection-start-line="15" selection-start-column="44" selection-end-line="15" selection-end-column="44" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/boot-mvc/src/main/resources/mvc.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="704">
-          <caret line="33" column="44" lean-forward="true" selection-start-line="33" selection-start-column="44" selection-end-line="33" selection-end-column="44" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/boot-mvc/src/main/resources/application.properties">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/boot-ioc-bean/src/main/resources/ioc-import.txt">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/boot-ioc-bean/src/main/java/org/yuanxing/bootiocbean/bean/Yellow.java">
+    <entry file="file://$PROJECT_DIR$/boot-datasource/src/main/java/org/yuanxing/bootdatasource/service/impl/BorrowServiceImpl.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="598">
-          <caret line="34" column="5" selection-start-line="9" selection-start-column="4" selection-end-line="34" selection-end-column="5" />
+          <caret line="33" column="37" selection-start-line="33" selection-start-column="37" selection-end-line="33" selection-end-column="37" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-context/5.1.7.RELEASE/spring-context-5.1.7.RELEASE.jar!/org/springframework/context/annotation/Scope.class">
+    <entry file="file://$PROJECT_DIR$/boot-datasource/src/main/java/org/yuanxing/bootdatasource/service/TestService1.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="368">
-          <caret line="24" column="59" selection-start-line="24" selection-start-column="59" selection-end-line="24" selection-end-column="59" />
+        <state relative-caret-position="276">
+          <caret line="12" column="23" selection-start-line="12" selection-start-column="23" selection-end-line="12" selection-end-column="23" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/boot-ioc-bean/src/main/java/org/yuanxing/bootiocbean/BootIocBeanApplication.java">
+    <entry file="file://$PROJECT_DIR$/boot-datasource/src/main/java/org/yuanxing/bootdatasource/service/impl/TestService1Impl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="437">
+          <caret line="25" column="62" selection-start-line="25" selection-start-column="36" selection-end-line="25" selection-end-column="62" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/boot-datasource/src/main/java/org/yuanxing/bootdatasource/service/impl/TestService2Impl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="276">
+          <caret line="18" selection-start-line="18" selection-end-line="18" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/boot-datasource/src/main/resources/update.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="92">
+          <caret line="4" column="29" selection-start-line="4" selection-start-column="29" selection-end-line="4" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/boot-datasource/src/main/java/org/yuanxing/bootdatasource/annotation/DataSource.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="299">
+          <caret line="13" column="18" selection-start-line="13" selection-start-column="18" selection-end-line="13" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/boot-datasource/src/main/java/org/yuanxing/bootdatasource/BootDatasourceApplication.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="115">
           <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/boot-ioc-bean/src/test/java/bean/BeanTest1.java">
+    <entry file="file://$PROJECT_DIR$/boot-datasource/src/main/java/org/yuanxing/bootdatasource/aspect/impl/LogAspect.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="253">
-          <caret line="11" column="10" selection-start-line="11" selection-start-column="10" selection-end-line="11" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/boot-mvc-annotation/src/main/resources/mvc-annotation.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="207">
-          <caret line="9" column="31" selection-start-line="9" selection-start-column="22" selection-end-line="9" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-web/5.0.12.RELEASE/spring-web-5.0.12.RELEASE-sources.jar!/org/springframework/web/multipart/MultipartResolver.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="427">
-          <caret line="104" column="45" selection-start-line="104" selection-start-column="45" selection-end-line="104" selection-end-column="45" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/boot-mvc-annotation/src/main/java/org/yuanxing/bootmvcannotation/controller/FileUploadController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="299">
-          <caret line="61" column="58" lean-forward="true" selection-start-line="61" selection-start-column="58" selection-end-line="61" selection-end-column="58" />
+        <state relative-caret-position="575">
+          <caret line="29" column="9" selection-start-line="29" selection-start-column="9" selection-end-line="29" selection-end-column="9" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#609#610#0" expanded="true" />
-            <element signature="e#639#640#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/boot-mvc-annotation/src/main/resources/mvc-annotation-multipartresolver.txt">
+    <entry file="file://$PROJECT_DIR$/boot-datasource/src/main/java/org/yuanxing/bootdatasource/config/package-info.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="732">
-          <caret line="278" column="11" selection-start-line="278" selection-start-column="11" selection-end-line="278" selection-end-column="11" />
+        <state relative-caret-position="138">
+          <caret line="6" column="43" selection-start-line="6" selection-start-column="43" selection-end-line="6" selection-end-column="43" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/boot-mvc-annotation/src/main/resources/application.properties">
+    <entry file="file://$PROJECT_DIR$/boot-mybatis/src/main/resources/application.properties">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="345">
-          <caret line="15" lean-forward="true" selection-start-line="15" selection-end-line="15" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pom.xml">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/boot-mvc-annotation/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="437">
-          <caret line="19" column="22" lean-forward="true" selection-start-line="19" selection-start-column="22" selection-end-line="19" selection-end-column="22" />
+        <state relative-caret-position="391">
+          <caret line="71" selection-start-line="71" selection-end-line="71" selection-end-column="90" />
         </state>
       </provider>
     </entry>
